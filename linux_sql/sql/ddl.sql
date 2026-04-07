@@ -1,7 +1,7 @@
 \c host_agent
 
-DROP TABLE IF EXISTS host_info
-DROP TABLE IF EXISTS host_usage
+DROP TABLE IF EXISTS host_usage;
+DROP TABLE IF EXISTS host_info;
 
 
 CREATE TABLE IF NOT EXISTS PUBLIC.host_info
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS PUBLIC.host_info
     hostname         VARCHAR NOT NULL,
     cpu_number       INT2 NOT NULL,
     cpu_architecture VARCHAR NOT NULL,
-    cpu_model        VARCHAR NOT NULL,s
+    cpu_model        VARCHAR NOT NULL,
     cpu_mhz          FLOAT8 NOT NULL,
     l2_cache         INT4 NOT NULL,
     "timestamp"      TIMESTAMP NULL,
@@ -20,9 +20,9 @@ CREATE TABLE IF NOT EXISTS PUBLIC.host_info
 );
 
 -- Create a host_usage tables
-CREATE TABLE IF NOT EXISTS PUBLIC.host_usages
+CREATE TABLE IF NOT EXISTS PUBLIC.host_usage
 (
-    "timestamp"    TIMESTAMP NOT NULL,ss
+    "timestamp"    TIMESTAMP NOT NULL,
     host_id        SERIAL NOT NULL,
     memory_free    INT4 NOT NULL,
     cpu_idle       INT2 NOT NULL,
