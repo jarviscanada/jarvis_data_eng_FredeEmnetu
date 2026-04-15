@@ -12,13 +12,13 @@ Create table cd.members(
     memid integer not null,
     surname varchar(200) not null,
     firstname varchar(200) not null,
-    address varchchar(300) not null,
+    address varchar(300) not null,
     zipcode integer not null,
     telephone varchar(20) not null,
     recommendedby integer,
     joindate timestamp not null,
     constraint memid_pk primary key (memid),
-    constraint  recommend_fk foreign key (recommendedby) 
+    constraint  recommend_memid_fk foreign key (recommendedby) 
         references cd.members(memid) on delete set null
 );
 ```
@@ -29,11 +29,11 @@ create table cd.bookings(
     bookid integer not null,
     facid integer not null,
     memid integer not null,
-    startime timestamp not null,
+    starttime timestamp not null,
     slots integer not null,
     constraint booking_pk primary key (bookid),
-    constraint facility_fk foreign key (facid) references cd.facilities(facid),
-    constraint member_fk foreign key (memid) refeerence cd.members(memid)
+    constraint bookings_facility_fk foreign key (facid) references cd.facilities(facid),
+    constraint bookings_member_fk foreign key (memid) refeerence cd.members(memid)
 );
 ```
 
@@ -47,7 +47,7 @@ create table cd.facilities (
     initaloutlay numeric not null,
     monthlymaintenance numeric not null,
     constraint facilites_pk primary key (facid)
-)
+);
 ```
 
 ---
