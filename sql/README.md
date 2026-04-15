@@ -6,7 +6,49 @@ in sql queries. Finally `Git` was used to track and manage files.
 
 --- 
 ## Table Setup (DDL)
+create Members table
+```sql
+Create table cd.members(
+    memid integer not null,
+    surname varchar(200) not null,
+    firstname varchar(200) not null,
+    address varchchar(300) not null,
+    zipcode integer not null,
+    telephone varchar(20) not null,
+    recommendedby integer,
+    joindate timestamp not null,
+    constraint memid_pk primary key (memid),
+    constraint  recommend_fk foreign key (recommendedby) 
+        references cd.members(memid) on delete set null
+);
+```
+create bookings table
 
+```sql
+create table cd.bookings(
+    bookid integer not null,
+    facid integer not null,
+    memid integer not null,
+    startime timestamp not null,
+    slots integer not null,
+    constraint booking_pk primary key (bookid),
+    constraint facility_fk foreign key (facid) references cd.facilities(facid),
+    constraint member_fk foreign key (memid) refeerence cd.members(memid)
+);
+```
+
+create facilities table
+```sql
+create table cd.facilities (
+    facid integer not null,
+    name varchar(100) not null,
+    membercost numeric not null,
+    guestcost numeric not null,
+    initaloutlay numeric not null,
+    monthlymaintenance numeric not null,
+    constraint facilites_pk primary key (facid)
+)
+```
 
 ---
 # SQL Queries
