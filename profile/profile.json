@@ -17,12 +17,12 @@
   "highlighted_projects": [
     {
       "description": "Built a multithreaded C++ web scraping application using parallel processing, reducing data retrieval time by 40% while enabling scalable,  concurrent data collection across multiple websites via Ubuntu Linux; documented codebase that improved readability  and enhanced maintainability and resource efficiency.\n",
-      "name": "C++ Multithreading project"
+      "name": "C++ Multithreading"
     },
     {
       "description": "Built and deployed a production e-commerce platform using Java/Spring Boot, MongoDB, and React,  supporting 1,000+ products; improved search performance by 35% through query tuning and indexing,  implemented a Jenkins/Docker CI/CD pipeline with Azure deployment to boost release reliability by 30%, and collaborated with stakeholders  to design secure REST APIs, data models, and authentication flows aligned with data protection standards.\n",
       "git_url": null,
-      "name": "Machine Learning"
+      "name": "Springboot E-commerce Store"
     }
   ],
   "jarvis_projects": [
@@ -36,7 +36,7 @@
   "others": [
     {
       "bullets": [
-        "Oracke Cloud Infrastructure 2025 Certified Foundations Associate (2025)"
+        "Oracle Cloud Infrastructure 2025 Certified Foundations Associate (2025)"
       ],
       "title": "Certificates"
     },

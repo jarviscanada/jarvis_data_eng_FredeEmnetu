@@ -21,10 +21,10 @@ skills:
     - RDBMS/SQL
     - Agile/Scrum
     - Git
-    - ExpressJs
+    - Express.Js
   # At least 5 skills
   competent:
-    - NextJs
+    - Next.Js
     - Spring Boot
     - C++
     - JavaScript
@@ -34,7 +34,7 @@ skills:
   familiar:
     - Jenkins
     - AWS Cloud management
-    - Test/Behaviour Driven Development
+    - Test/Behaviour-Driven Development
     - Rust
     - MongoDB
 
@@ -54,13 +54,13 @@ jarvis_projects:
 # Feel free to add more projects
 highlighted_projects:
   #project name
-  - name: "C++ Multithreading project"
+  - name: "C++ Multithreading"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: >
       Built a multithreaded C++ web scraping application using parallel processing, reducing data retrieval time by 40% while enabling scalable, 
-      concurrent data collection across multiple websites via Ubuntu Linux; documented codebase that improved readability 
+      concurrent data collection across multiple websites via Ubuntu Linux; Documented codebase that improved readability 
       and enhanced maintainability and resource efficiency.
-  - name: "Machine Learning"
+  - name: "Springboot E-commerce Store"
     git_url:
     description: >
       Built and deployed a production e-commerce platform using Java/Spring Boot, MongoDB, and React, 
@@ -82,11 +82,11 @@ professional_experience:
       hands-on software development experience. Engineered backend applications using Java and PostgreSQL, leveraging Docker 
       for containerization and Google Cloud VMs for cloud-based deployment. Automated workflows and system tasks through Bash 
       scripting within a Linux environment, reinforcing core DevOps principles throughout each project.
-  - title: "Software Developer Engineer in Test"
+  - title: "Software Development Engineer in Test"
     company: "QA Consultants"
     duration: "2023"
     description: >
-      Built a full automated test suite in C#, Gherkin, and SpecFlow, reaching a 93% pass rate and 
+      Built a fully automated test suite in C#, Gherkin, and SpecFlow, reaching a 93% pass rate and 
       cutting production defects by 20%. Integrated the test suite into the existing CI/CD pipeline, accelerating release cadence without 
       increasing manual QA load. Grew Selenium-based UI coverage, materially reducing regression surface across Agile sprints.
 
@@ -94,22 +94,22 @@ professional_experience:
 education: 
   - school_name: "Ontario Tech University"
     duration: "2018-2022"
-    degree: "Bachelor of Sciences"
+    degree: "Bachelor of Science"
     department: "Computer Science"
     # optional
     awards_achievements: 
       - "Awards of Recognition Scholarship"
-      - "Presidents List (2021): Obtained a 3.8GPA"
-      - "Dean's List (2019,2022): Maintained above a 3.5GPA "
+      - "President's List (2021): Obtained a 3.8 GPA"
+      - "Dean's List (2019,2022): Maintained above a 3.5 GPA "
       - "GPA: 3.72/4.3"
 
 #Optional section
 others:
-    #category
+  #category
   - title: "Certificates"
     #list of items
     bullets:
-      - "Oracke Cloud Infrastructure 2025 Certified Foundations Associate (2025)"
+      - "Oracle Cloud Infrastructure 2025 Certified Foundations Associate (2025)"
   - title: "Activities/Hobbies"
     bullets:
       - "Wood carving & miniature painting"
