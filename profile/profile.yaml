@@ -1,0 +1,117 @@
+# Preferred name (Characters only)
+name: "Frede Emnetu"
+# Your GitHub repo root URL
+github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_FredeEmnetu
+
+# Introduce yourself, your academic and professional background.
+# What excites you about the software industry and your passion. At least 80 words
+summary: >
+  Backend-leaning Full-Stack Developer specializing in Java/Spring Boot and React, with hands-on experience shipping
+  production systems across e-commerce, workflow automation, and QA automation. Comfortable owning backend architecture
+  end-to-end – from API design and database optimization to CI/CD deployment – while collaborating directly with stakeholders to
+  define requirements and deliver working software.
+
+# Group your skills by level.
+# Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
+skills:
+  # At least 5 skills
+  proficient:
+    - Java
+    - Linux/Bash
+    - RDBMS/SQL
+    - Agile/Scrum
+    - Git
+    - ExpressJs
+  # At least 5 skills
+  competent:
+    - NextJs
+    - Spring Boot
+    - C++
+    - JavaScript
+    - Docker
+    - API Testing
+  # At least 5 skills
+  familiar:
+    - Jenkins
+    - AWS Cloud management
+    - Test/Behaviour Driven Development
+    - Rust
+    - MongoDB
+
+# List of Jarvis projects
+jarvis_projects:
+  - name: "Cluster Monitor"
+    git_url: "/linux_sql"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: >
+      The Linux Cluster Monitoring Agent (LCA) is a resource monitoring solution designed to track and 
+      record the hardware specifications and real-time usage statistics of Linux nodes within a server cluster. 
+      The system automatically collects CPU, memory, and disk data from each host and persists it to a centralized 
+      PostgreSQL database for historical analysis and reporting.
+
+# List of personal or academic projects
+# Feel free to add more projects
+highlighted_projects:
+  #project name
+  - name: "C++ Multithreading project"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: >
+      Built a multithreaded C++ web scraping application using parallel processing, reducing data retrieval time by 40% while enabling scalable, 
+      concurrent data collection across multiple websites via Ubuntu Linux; documented codebase that improved readability 
+      and enhanced maintainability and resource efficiency.
+  - name: "Machine Learning"
+    git_url:
+    description: >
+      Built and deployed a production e-commerce platform using Java/Spring Boot, MongoDB, and React, 
+      supporting 1,000+ products; improved search performance by 35% through query tuning and indexing, 
+      implemented a Jenkins/Docker CI/CD pipeline with Azure deployment to boost release reliability by 30%, and collaborated with stakeholders 
+      to design secure REST APIs, data models, and authentication flows aligned with data protection standards.
+
+#List of professional experience
+#The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+#The description must be more than 25 words. If your experience is not software related, please focus on soft skills and achievements (e.g. team collaboration, problem-solving, improvements, communication).
+professional_experience:
+  #Write your Jarvis role as a professional experience rather than training.
+  - title: "Software Developer"
+    company: "Jarvis"
+    duration: "2026-present"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: >
+      Developed a series of projects spanning multiple languages, frameworks, and technologies to build practical, 
+      hands-on software development experience. Engineered backend applications using Java and PostgreSQL, leveraging Docker 
+      for containerization and Google Cloud VMs for cloud-based deployment. Automated workflows and system tasks through Bash 
+      scripting within a Linux environment, reinforcing core DevOps principles throughout each project.
+  - title: "Software Developer Engineer in Test"
+    company: "QA Consultants"
+    duration: "2023"
+    description: >
+      Built a full automated test suite in C#, Gherkin, and SpecFlow, reaching a 93% pass rate and 
+      cutting production defects by 20%. Integrated the test suite into the existing CI/CD pipeline, accelerating release cadence without 
+      increasing manual QA load. Grew Selenium-based UI coverage, materially reducing regression surface across Agile sprints.
+
+#List of edcuation
+education: 
+  - school_name: "Ontario Tech University"
+    duration: "2018-2022"
+    degree: "Bachelor of Sciences"
+    department: "Computer Science"
+    # optional
+    awards_achievements: 
+      - "Awards of Recognition Scholarship"
+      - "Presidents List (2021): Obtained a 3.8GPA"
+      - "Dean's List (2019,2022): Maintained above a 3.5GPA "
+      - "GPA: 3.72/4.3"
+
+#Optional section
+others:
+    #category
+  - title: "Certificates"
+    #list of items
+    bullets:
+      - "Oracke Cloud Infrastructure 2025 Certified Foundations Associate (2025)"
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Wood carving & miniature painting"
+      - "Sudoku & logic puzzles"
+      - "Fitness & Strength training"
