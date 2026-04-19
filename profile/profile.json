@@ -3,11 +3,11 @@
     {
       "awards_achievements": [
         "Awards of Recognition Scholarship",
-        "Presidents List (2021): Obtained a 3.8GPA",
-        "Dean's List (2019,2022): Maintained above a 3.5GPA ",
+        "President's List (2021): Obtained a 3.8 GPA",
+        "Dean's List (2019,2022): Maintained above a 3.5 GPA ",
         "GPA: 3.72/4.3"
       ],
-      "degree": "Bachelor of Sciences",
+      "degree": "Bachelor of Science",
       "department": "Computer Science",
       "duration": "2018-2022",
       "school_name": "Ontario Tech University"
@@ -16,7 +16,7 @@
   "github_repo_root_url": "https://github.com/jarviscanada/jarvis_data_eng_FredeEmnetu",
   "highlighted_projects": [
     {
-      "description": "Built a multithreaded C++ web scraping application using parallel processing, reducing data retrieval time by 40% while enabling scalable,  concurrent data collection across multiple websites via Ubuntu Linux; documented codebase that improved readability  and enhanced maintainability and resource efficiency.\n",
+      "description": "Built a multithreaded C++ web scraping application using parallel processing, reducing data retrieval time by 40% while enabling scalable,  concurrent data collection across multiple websites via Ubuntu Linux; Documented codebase that improved readability  and enhanced maintainability and resource efficiency.\n",
       "name": "C++ Multithreading"
     },
     {
@@ -58,14 +58,14 @@
     },
     {
       "company": "QA Consultants",
-      "description": "Built a full automated test suite in C#, Gherkin, and SpecFlow, reaching a 93% pass rate and  cutting production defects by 20%. Integrated the test suite into the existing CI/CD pipeline, accelerating release cadence without  increasing manual QA load. Grew Selenium-based UI coverage, materially reducing regression surface across Agile sprints.\n",
+      "description": "Built a fully automated test suite in C#, Gherkin, and SpecFlow, reaching a 93% pass rate and  cutting production defects by 20%. Integrated the test suite into the existing CI/CD pipeline, accelerating release cadence without  increasing manual QA load. Grew Selenium-based UI coverage, materially reducing regression surface across Agile sprints.\n",
       "duration": "2023",
-      "title": "Software Developer Engineer in Test"
+      "title": "Software Development Engineer in Test"
     }
   ],
   "skills": {
     "competent": [
-      "NextJs",
+      "Next.Js",
       "Spring Boot",
       "C++",
       "JavaScript",
@@ -75,7 +75,7 @@
     "familiar": [
       "Jenkins",
       "AWS Cloud management",
-      "Test/Behaviour Driven Development",
+      "Test/Behaviour-Driven Development",
       "Rust",
       "MongoDB"
     ],
@@ -85,7 +85,7 @@
       "RDBMS/SQL",
       "Agile/Scrum",
       "Git",
-      "ExpressJs"
+      "Express.Js"
     ]
   },
   "summary": "Backend-leaning Full-Stack Developer specializing in Java/Spring Boot and React, with hands-on experience shipping production systems across e-commerce, workflow automation, and QA automation. Comfortable owning backend architecture end-to-end – from API design and database optimization to CI/CD deployment – while collaborating directly with stakeholders to define requirements and deliver working software.\n"

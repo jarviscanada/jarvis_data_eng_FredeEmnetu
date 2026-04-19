@@ -5,11 +5,11 @@ Backend-leaning Full-Stack Developer specializing in Java/Spring Boot and React,
 
 ## Skills
 
-**Proficient:** Java, Linux/Bash, RDBMS/SQL, Agile/Scrum, Git, ExpressJs
+**Proficient:** Java, Linux/Bash, RDBMS/SQL, Agile/Scrum, Git, Express.Js
 
-**Competent:** NextJs, Spring Boot, C++, JavaScript, Docker, API Testing
+**Competent:** Next.Js, Spring Boot, C++, JavaScript, Docker, API Testing
 
-**Familiar:** Jenkins, AWS Cloud management, Test/Behaviour Driven Development, Rust, MongoDB
+**Familiar:** Jenkins, AWS Cloud management, Test/Behaviour-Driven Development, Rust, MongoDB
 
 ## Jarvis Projects
 
@@ -21,10 +21,10 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_FredeEmnet
 
 
 ## Highlighted Projects
-**C++ Multithreading project**: Built a multithreaded C++ web scraping application using parallel processing, reducing data retrieval time by 40% while enabling scalable,  concurrent data collection across multiple websites via Ubuntu Linux; documented codebase that improved readability  and enhanced maintainability and resource efficiency.
+**C++ Multithreading**: Built a multithreaded C++ web scraping application using parallel processing, reducing data retrieval time by 40% while enabling scalable,  concurrent data collection across multiple websites via Ubuntu Linux; Documented codebase that improved readability  and enhanced maintainability and resource efficiency.
 
 
-**Machine Learning**: Built and deployed a production e-commerce platform using Java/Spring Boot, MongoDB, and React,  supporting 1,000+ products; improved search performance by 35% through query tuning and indexing,  implemented a Jenkins/Docker CI/CD pipeline with Azure deployment to boost release reliability by 30%, and collaborated with stakeholders  to design secure REST APIs, data models, and authentication flows aligned with data protection standards.
+**Springboot E-commerce Store**: Built and deployed a production e-commerce platform using Java/Spring Boot, MongoDB, and React,  supporting 1,000+ products; improved search performance by 35% through query tuning and indexing,  implemented a Jenkins/Docker CI/CD pipeline with Azure deployment to boost release reliability by 30%, and collaborated with stakeholders  to design secure REST APIs, data models, and authentication flows aligned with data protection standards.
 
 
 
@@ -33,20 +33,20 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_FredeEmnet
 **Software Developer, Jarvis (2026-present)**: Developed a series of projects spanning multiple languages, frameworks, and technologies to build practical,  hands-on software development experience. Engineered backend applications using Java and PostgreSQL, leveraging Docker  for containerization and Google Cloud VMs for cloud-based deployment. Automated workflows and system tasks through Bash  scripting within a Linux environment, reinforcing core DevOps principles throughout each project.
 
 
-**Software Developer Engineer in Test, QA Consultants (2023)**: Built a full automated test suite in C#, Gherkin, and SpecFlow, reaching a 93% pass rate and  cutting production defects by 20%. Integrated the test suite into the existing CI/CD pipeline, accelerating release cadence without  increasing manual QA load. Grew Selenium-based UI coverage, materially reducing regression surface across Agile sprints.
+**Software Development Engineer in Test, QA Consultants (2023)**: Built a fully automated test suite in C#, Gherkin, and SpecFlow, reaching a 93% pass rate and  cutting production defects by 20%. Integrated the test suite into the existing CI/CD pipeline, accelerating release cadence without  increasing manual QA load. Grew Selenium-based UI coverage, materially reducing regression surface across Agile sprints.
 
 
 
 ## Education
-**Ontario Tech University (2018-2022)**, Bachelor of Sciences, Computer Science
+**Ontario Tech University (2018-2022)**, Bachelor of Science, Computer Science
 - Awards of Recognition Scholarship
-- Presidents List (2021): Obtained a 3.8GPA
-- Dean's List (2019,2022): Maintained above a 3.5GPA 
+- President's List (2021): Obtained a 3.8 GPA
+- Dean's List (2019,2022): Maintained above a 3.5 GPA 
 - GPA: 3.72/4.3
 
 
 ## Miscellaneous
-- Oracke Cloud Infrastructure 2025 Certified Foundations Associate (2025)
+- Oracle Cloud Infrastructure 2025 Certified Foundations Associate (2025)
 - Wood carving & miniature painting
 - Sudoku & logic puzzles
 - Fitness & Strength training
