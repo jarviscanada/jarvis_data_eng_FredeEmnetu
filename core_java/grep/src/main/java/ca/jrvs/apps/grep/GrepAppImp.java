@@ -15,21 +15,22 @@ import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GrepApp implements JavaGrep{
+public class GrepAppImp implements JavaGrep {
+
   private String rootPath;
   private String regex;
   private String outFile;
-  private static final Logger logger = LoggerFactory.getLogger(GrepApp.class);
+  private static final Logger logger = LoggerFactory.getLogger(GrepAppImp.class);
 
   @Override
   public void process() throws IOException {
     List<String> matchedLines = new ArrayList<>();
     List<File> files = listFiles(this.rootPath);
 
-    for(File f : files){ // go through each file
+    for (File f : files) { // go through each file
       List<String> lines = readLines(f);
-      for(String line : lines){
-        if (containsPattern(line)){
+      for (String line : lines) {
+        if (containsPattern(line)) {
           matchedLines.add(line);
         }
       }
@@ -40,16 +41,16 @@ public class GrepApp implements JavaGrep{
 
   @Override
   public List<File> listFiles(String rootDir) {
-    if(rootDir == null || Objects.equals(rootDir,"") || isInvalidPath(rootDir)){
+    if (rootDir == null || Objects.equals(rootDir, "") || isInvalidPath(rootDir)) {
       throw new IllegalArgumentException("Directory cannot be null or empty or invalid path");
     }
     List<File> listOfFiles = new ArrayList<>();
 
-    try(Stream<Path> stream = Files.walk(Paths.get(rootDir))){
+    try (Stream<Path> stream = Files.walk(Paths.get(rootDir))) {
       stream
           .filter(path -> !Files.isDirectory(path))
           .forEach(path -> listOfFiles.add(path.toFile()));
-    }catch (IOException e){
+    } catch (IOException e) {
       throw new RuntimeException("Failed to traverse Directory", e);
     }
 
@@ -60,11 +61,10 @@ public class GrepApp implements JavaGrep{
   public List<String> readLines(File inputFile) {
     List<String> lines = new ArrayList<>();
 
-    try(Stream<String> stream = Files.lines(inputFile.toPath())){
+    try (Stream<String> stream = Files.lines(inputFile.toPath())) {
       stream
           .forEach(lines::add);
     } catch (IOException e) {
-      System.out.println(e);
       throw new RuntimeException("Unable to read lines: ",e);
 
     }
@@ -81,16 +81,16 @@ public class GrepApp implements JavaGrep{
   @Override
   public void writeToFile(List<String> lines) throws IOException {
     String outFile = this.outFile;
-    try{
+    try {
       Files.write(Paths.get(outFile), lines);
-    }catch(IOException e){
+    } catch (IOException e) {
       throw new RuntimeException("Write to files failed: ", e);
     }
   }
-  static boolean isInvalidPath(String rootDir){
+  static boolean isInvalidPath(String rootDir) {
     try {
       Path path = Paths.get(rootDir);
-    }catch (Exception e){
+    } catch (Exception e) {
       return true;
     }
     return false;
@@ -126,19 +126,19 @@ public class GrepApp implements JavaGrep{
     this.outFile = outFile;
   }
 
-  public static void main(String... args){
+  public static void main(String... args) {
     BasicConfigurator.configure();
-    if (args.length != 3){
+    if (args.length != 3) {
       throw new IllegalArgumentException("Must contain 3 arguments (regex, rootPath, outFile");
     }
-    GrepApp javaGrep = new GrepApp();
+    GrepAppImp javaGrep = new GrepAppImp();
     javaGrep.setRegex(args[0]);
     javaGrep.setRootPath(args[1]);
     javaGrep.setOutFile(args[2]);
 
-    try{
+    try {
       javaGrep.process();
-    }catch(Exception exception){
+    } catch (Exception exception) {
       logger.error("Error: Unable to process", exception);
     }
 
