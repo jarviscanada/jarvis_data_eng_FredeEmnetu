@@ -1,17 +1,8 @@
 package ca.jrvs.apps.grep;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +16,7 @@ public class GrepLambdaStreamAppImp extends GrepAppImp implements JavaGrep {
 
   @Override
   public void process() throws IOException {
-    List<String> matchedLines = listFiles(this.rootPath)
+    List<String> matchedLines = listFiles(getRootPath())
         .stream()
         .flatMap(f -> readLines(f).stream())
         .filter(line -> containsPattern(line))
@@ -33,36 +24,6 @@ public class GrepLambdaStreamAppImp extends GrepAppImp implements JavaGrep {
 
     writeToFile(matchedLines);
 
-  }
-
-  @Override
-  public String getRootPath() {
-    return rootPath;
-  }
-
-  @Override
-  public void setRootPath(String rootPath) {
-    this.rootPath = rootPath;
-  }
-
-  @Override
-  public String getRegex() {
-    return regex;
-  }
-
-  @Override
-  public void setRegex(String regex) {
-    this.regex = regex;
-  }
-
-  @Override
-  public String getOutFile() {
-    return outFile;
-  }
-
-  @Override
-  public void setOutFile(String outFile) {
-    this.outFile = outFile;
   }
 
   public static void main(String... args) {

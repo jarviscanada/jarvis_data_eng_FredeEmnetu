@@ -1,6 +1,8 @@
 package ca.jrvs.apps.grep;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -65,7 +67,7 @@ public class GrepAppImp implements JavaGrep {
       stream
           .forEach(lines::add);
     } catch (IOException e) {
-      throw new RuntimeException("Unable to read lines: ",e);
+      throw new RuntimeException("Unable to read lines: ", e);
 
     }
     return lines;
@@ -80,13 +82,16 @@ public class GrepAppImp implements JavaGrep {
 
   @Override
   public void writeToFile(List<String> lines) throws IOException {
-    String outFile = this.outFile;
-    try {
-      Files.write(Paths.get(outFile), lines);
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.outFile))) {
+      for (String line : lines) {
+        writer.write(line);
+        writer.newLine();
+      }
     } catch (IOException e) {
       throw new RuntimeException("Write to files failed: ", e);
     }
   }
+
   static boolean isInvalidPath(String rootDir) {
     try {
       Path path = Paths.get(rootDir);
@@ -98,7 +103,7 @@ public class GrepAppImp implements JavaGrep {
 
   @Override
   public String getRootPath() {
-    return rootPath;
+    return this.rootPath;
   }
 
   @Override
@@ -108,7 +113,7 @@ public class GrepAppImp implements JavaGrep {
 
   @Override
   public String getRegex() {
-    return regex;
+    return this.regex;
   }
 
   @Override
@@ -118,7 +123,7 @@ public class GrepAppImp implements JavaGrep {
 
   @Override
   public String getOutFile() {
-    return outFile;
+    return this.outFile;
   }
 
   @Override
@@ -129,7 +134,7 @@ public class GrepAppImp implements JavaGrep {
   public static void main(String... args) {
     BasicConfigurator.configure();
     if (args.length != 3) {
-      throw new IllegalArgumentException("Must contain 3 arguments (regex, rootPath, outFile");
+      throw new IllegalArgumentException("Must contain 3 arguments (regex, rootPath, outFile)");
     }
     GrepAppImp javaGrep = new GrepAppImp();
     javaGrep.setRegex(args[0]);
