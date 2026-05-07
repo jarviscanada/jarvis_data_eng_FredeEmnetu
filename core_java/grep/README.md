@@ -13,11 +13,11 @@ Docker Hub based on an Alpine Linux base image for a minimal footprint.
 
 **Run via Docker:**
 ```bash
-docker pull FredeEmnetu/grep-app
+docker pull FredeEmnetu/grep
 docker run --rm \
   -v /path/to/search:/data/input \
   -v /path/to/output:/data/output \
-  FredeEmnetu/grep-app \
+  FredeEmnetu/grep \
   ".*your-regex.*" /data/input /data/output/results.txt
 ```
 
@@ -66,8 +66,8 @@ A `Dockerfile` copies the JAR into an Alpine-based Java image, sets the entrypoi
 and passes the three required arguments at runtime via `docker run`. The image is built and pushed to Docker Hub:
 
 ```bash
-docker build -t FredeEmnetu/grep-app .
-docker push FredeEmnetu/grep-app
+docker build -t FredeEmnetu/grep .
+docker push FredeEmnetu/grep
 ```
 
 This allows the app to run consistently across environments without requiring a local JDK installation.
