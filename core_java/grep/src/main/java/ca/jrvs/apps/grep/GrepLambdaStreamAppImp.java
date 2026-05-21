@@ -1,58 +1,61 @@
 package ca.jrvs.apps.grep;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GrepLambdaStreamAppImp extends GrepAppImp implements JavaGrep 
+public class GrepLambdaStreamAppImp extends GrepAppImp implements JavaGrep {
 
   private static final Logger logger = LoggerFactory.getLogger(GrepLambdaStreamAppImp.class);
 
   @Override
   public void process() throws IOException {
 
-    try(Stream<Path> files = listFiles(getRootPath())){
+    try (Stream<Path> files = listFilesStream(getRootPath())) {
       List<String> matchedLines = files
-            .flatMap(f -> readLines(f.toFile()))
+            .flatMap(f -> readLinesStream(f.toFile()))
             .filter(line -> containsPattern(line))
             .collect(Collectors.toList());
 
       writeToFile(matchedLines);
 
-    }catch(IOException e){
-
+    } catch (IOException e) {
+      throw new IOException("process failed", e);
     }
 
   }
   
-  public Stream<Path> listFiles(String rootDir) {
+  public Stream<Path> listFilesStream(String rootDir) {
     if (rootDir == null || Objects.equals(rootDir, "") || isInvalidPath(rootDir)) {
       throw new IllegalArgumentException("Directory cannot be null or empty or invalid path");
     }
 
-    
-
     try {
-      Stream<Path> traverse_stream = Files.walk(Paths.get(rootDir));
-     return traverse_stream
+      Stream<Path> traverseStream = Files.walk(Paths.get(rootDir));
+     return traverseStream
                 .filter(path -> !Files.isDirectory(path))
-                .onClose(traverse_stream::close);
+                .onClose(traverseStream::close);
 
     } catch (IOException e) {
       throw new RuntimeException("Failed to traverse Directory", e);
     }
   }
 
-  
-  public Stream<String> readLines(File inputFile) {
+  public Stream<String> readLinesStream(File inputFile) {
 
     try {
-      Stream<String> read_stream = Files.lines(inputFile.toPath());
-      return read_stream
-          .onClose(read_stream::close);
+      Stream<String> readStream = Files.lines(inputFile.toPath());
+      return readStream
+          .onClose(readStream::close);
     } catch (IOException e) {
       throw new RuntimeException("Unable to read lines: ", e);
 
