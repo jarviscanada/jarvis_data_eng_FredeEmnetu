@@ -22,6 +22,7 @@ public class GrepAppImp implements JavaGrep {
   private String rootPath;
   private String regex;
   private String outFile;
+  private Pattern p;
   private static final Logger logger = LoggerFactory.getLogger(GrepAppImp.class);
 
   @Override
@@ -75,7 +76,7 @@ public class GrepAppImp implements JavaGrep {
 
   @Override
   public boolean containsPattern(String line) {
-    Pattern p = Pattern.compile(this.getRegex());
+    
     Matcher m = p.matcher(line);
     return m.find();
   }
@@ -118,6 +119,7 @@ public class GrepAppImp implements JavaGrep {
 
   @Override
   public void setRegex(String regex) {
+    p = Pattern.compile(this.getRegex());
     this.regex = regex;
   }
 

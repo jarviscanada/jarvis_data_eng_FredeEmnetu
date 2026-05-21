@@ -7,23 +7,56 @@ import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GrepLambdaStreamAppImp extends GrepAppImp implements JavaGrep {
-  private String rootPath;
-  private String regex;
-  private String outFile;
+public class GrepLambdaStreamAppImp extends GrepAppImp implements JavaGrep 
 
   private static final Logger logger = LoggerFactory.getLogger(GrepLambdaStreamAppImp.class);
 
   @Override
   public void process() throws IOException {
-    List<String> matchedLines = listFiles(getRootPath())
-        .stream()
-        .flatMap(f -> readLines(f).stream())
-        .filter(line -> containsPattern(line))
-        .collect(Collectors.toList());
 
-    writeToFile(matchedLines);
+    try(Stream<Path> files = listFiles(getRootPath())){
+      List<String> matchedLines = files
+            .flatMap(f -> readLines(f.toFile()))
+            .filter(line -> containsPattern(line))
+            .collect(Collectors.toList());
 
+      writeToFile(matchedLines);
+
+    }catch(IOException e){
+
+    }
+
+  }
+  
+  public Stream<Path> listFiles(String rootDir) {
+    if (rootDir == null || Objects.equals(rootDir, "") || isInvalidPath(rootDir)) {
+      throw new IllegalArgumentException("Directory cannot be null or empty or invalid path");
+    }
+
+    
+
+    try {
+      Stream<Path> traverse_stream = Files.walk(Paths.get(rootDir));
+     return traverse_stream
+                .filter(path -> !Files.isDirectory(path))
+                .onClose(traverse_stream::close);
+
+    } catch (IOException e) {
+      throw new RuntimeException("Failed to traverse Directory", e);
+    }
+  }
+
+  
+  public Stream<String> readLines(File inputFile) {
+
+    try {
+      Stream<String> read_stream = Files.lines(inputFile.toPath());
+      return read_stream
+          .onClose(read_stream::close);
+    } catch (IOException e) {
+      throw new RuntimeException("Unable to read lines: ", e);
+
+    }
   }
 
   public static void main(String... args) {
