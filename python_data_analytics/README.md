@@ -50,7 +50,7 @@ The project architecture was built on transaction data spanning 01/12/2009 to 09
 
 <!-- TODO: Insert your architecture diagram below. Replace the path with the actual location of your image. -->
 
-![Architecture Diagram](./Resources/NonTransparent.drawio.png)
+![Architecture Diagram](./Resources/Transparent2.drawio.png)
 
 # Data Analytics and Wrangling
 
