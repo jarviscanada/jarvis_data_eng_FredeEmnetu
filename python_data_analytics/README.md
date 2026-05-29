@@ -50,7 +50,7 @@ The project architecture was built on transaction data spanning 01/12/2009 to 09
 
 <!-- TODO: Insert your architecture diagram below. Replace the path with the actual location of your image. -->
 
-![Architecture Diagram](./Resources/final.drawio.png)
+![Architecture Diagram](./Resources/NonTransparent.drawio.png)
 
 # Data Analytics and Wrangling
 
@@ -112,7 +112,9 @@ The analysis was structured around four business questions to give the LGS marke
 
 **RFM Take aways:**
 
-> LGS has 843 Champions driving most revenue, 1,162 Loyals who could become Champions, but 754 At Risk and 86 Can't Lose customers quietly disappearing — and no retention strategy to stop it.
+> <span style="color: #B8860B;">LGS has 843 Champions driving most revenue, 1,162 Loyals who could become Champions, but 754 At Risk and 86 Can't Lose customers quietly disappearing — and no retention strategy to stop it.</span> 
+
+
 
 # Improvements
 
