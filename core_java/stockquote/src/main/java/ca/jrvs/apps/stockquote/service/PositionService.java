@@ -111,7 +111,7 @@ public class PositionService {
 
       throw new IllegalArgumentException("You do not own any shares of: " + ticker);
     }
-    dao.deleteAll();
+    dao.deleteById(prevPosition.get().getSymbol());
   }
 
 
