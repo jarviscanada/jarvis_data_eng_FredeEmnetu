@@ -1,5 +1,6 @@
 package ca.jrvs.apps.stockquote.util;
 
+import ca.jrvs.apps.stockquote.DTO.Quote;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

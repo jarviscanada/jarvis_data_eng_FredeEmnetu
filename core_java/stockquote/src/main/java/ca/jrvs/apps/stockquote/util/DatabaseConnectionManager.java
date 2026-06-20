@@ -11,7 +11,7 @@ public class DatabaseConnectionManager {
   private final String user;
   private final String password;
   private static final Logger log = Logger.getLogger(DatabaseConnectionManager.class.getName());
-  private static final String exceptionFormat = "exception in %s, message: %s, code %s";
+  public static final String exceptionFormat = "exception in %s, message: %s, code %s";
   private static Connection connection;
   /**
    *

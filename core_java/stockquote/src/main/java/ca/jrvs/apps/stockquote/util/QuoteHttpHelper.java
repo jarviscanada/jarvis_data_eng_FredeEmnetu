@@ -1,8 +1,7 @@
 package ca.jrvs.apps.stockquote.util;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import ca.jrvs.apps.stockquote.DTO.Quote;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -46,7 +45,7 @@ public class QuoteHttpHelper {
       if (response.body() != null) {
         String json = response.body().string();
          GlobalQuoteResponse wrapper = JsonParser.toObjectFromJson(json, GlobalQuoteResponse.class);
-          quote = wrapper.getQuote();
+         quote = wrapper.getQuote();
 
         if (quote == null || quote.getSymbol().isEmpty()) throw new IllegalArgumentException("Bad symbol");
         quote.setTimestamp(Timestamp.from(Instant.now()));

@@ -1,4 +1,4 @@
-package ca.jrvs.apps.stockquote.util;
+package ca.jrvs.apps.stockquote.DTO;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,28 +24,28 @@ public class Quote {
   private String symbol;
 
   @JsonProperty("02. open")
-  private String open;
+  private double open;
 
   @JsonProperty("03. high")
-  private String high;
+  private double high;
 
   @JsonProperty("04. low")
-  private String low;
+  private double low;
 
   @JsonProperty("05. price")
-  private String price;
+  private double price;
 
   @JsonProperty("06. volume")
-  private String volume;
+  private long volume;
 
   @JsonProperty("07. latest trading day")
-  private String latestTradingDay;
+  private Timestamp latestTradingDay;
 
   @JsonProperty("08. previous close")
-  private String previousClose;
+  private double previousClose;
 
   @JsonProperty("09. change")
-  private String change;
+  private double change;
 
   @JsonProperty("10. change percent")
   private String changePercent;
@@ -54,39 +54,39 @@ public class Quote {
 
   @JsonProperty("01. symbol")
   public String getSymbol() { return symbol; }
-  public void setSymbol(String symbol) { this.symbol = symbol; }
+  public void setSymbol(String symbol) { this.symbol = symbol.trim().toUpperCase(); }
 
   @JsonProperty("02. open")
-  public String getOpen() { return open; }
-  public void setOpen(String open) { this.open = open; }
+  public double getOpen() { return open; }
+  public void setOpen(double open) { this.open = open; }
 
   @JsonProperty("03. high")
-  public String getHigh() { return high; }
-  public void setHigh(String high) { this.high = high; }
+  public double getHigh() { return high; }
+  public void setHigh(double high) { this.high = high; }
 
   @JsonProperty("04. low")
-  public String getLow() { return low; }
-  public void setLow(String low) { this.low = low; }
+  public double getLow() { return low; }
+  public void setLow(double low) { this.low = low; }
 
   @JsonProperty("05. price")
-  public String getPrice() { return price; }
-  public void setPrice(String price) { this.price = price; }
+  public double getPrice() { return price; }
+  public void setPrice(double price) { this.price = price; }
 
   @JsonProperty("06. volume")
-  public String getVolume() { return volume; }
-  public void setVolume(String volume) { this.volume = volume; }
+  public long getVolume() { return volume; }
+  public void setVolume(long volume) { this.volume = volume; }
 
   @JsonProperty("07. latest trading day")
-  public String getLatestTradingDay() { return latestTradingDay; }
-  public void setLatestTradingDay(String latestTradingDay) { this.latestTradingDay = latestTradingDay; }
+  public Timestamp getLatestTradingDay() { return latestTradingDay; }
+  public void setLatestTradingDay(Timestamp latestTradingDay) { this.latestTradingDay = latestTradingDay; }
 
   @JsonProperty("08. previous close")
-  public String getPreviousClose() { return previousClose; }
-  public void setPreviousClose(String previousClose) { this.previousClose = previousClose; }
+  public double getPreviousClose() { return previousClose; }
+  public void setPreviousClose(double previousClose) { this.previousClose = previousClose; }
 
   @JsonProperty("09. change")
-  public String getChange() { return change; }
-  public void setChange(String change) { this.change = change; }
+  public double getChange() { return change; }
+  public void setChange(double change) { this.change = change; }
 
   @JsonProperty("10. change percent")
   public String getChangePercent() { return changePercent; }
