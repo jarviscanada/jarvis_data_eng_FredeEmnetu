@@ -1,7 +1,7 @@
 package ca.jrvs.apps.stockquote.service;
 
-import ca.jrvs.apps.stockquote.DAO.Implementation.PositionDao;
-import ca.jrvs.apps.stockquote.DTO.Position;
+import ca.jrvs.apps.stockquote.dao.Implementation.PositionDao;
+import ca.jrvs.apps.stockquote.dto.Position;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,28 +18,6 @@ public class PositionService {
   }
 
   /**
-   * Processes a buy order and updates the database accordingly.
-   *
-   * TODO: Implement this method. Steps:
-   *
-   * 1. Validate inputs:
-   *    - ticker must not be null or empty → throw IllegalArgumentException
-   *    - numberOfShares must be positive → throw IllegalArgumentException
-   *    - price must be positive → throw IllegalArgumentException
-   *
-   * 2. Calculate cost: numberOfShares * price
-   *
-   * 3. Check if a position already exists: dao.findById(ticker)
-   *
-   * 4. If position EXISTS (accumulate):
-   *    - New shares = existing shares + numberOfShares
-   *    - New valuePaid = existing valuePaid + cost
-   *
-   * 5. If position DOES NOT exist (create new):
-   *    - Shares = numberOfShares
-   *    - ValuePaid = cost
-   *
-   * 6. Save and return the position via dao.save(position)
    *
    * @param ticker         - stock symbol
    * @param numberOfShares - number of shares to buy
@@ -77,8 +55,6 @@ public class PositionService {
   /**
    * Returns all positions in the portfolio.
    *
-   * TODO: Implement using dao.findAll()
-   *
    * @return All positions
    */
   public Iterable<Position> viewPortfolio() {
@@ -87,18 +63,6 @@ public class PositionService {
 
   /**
    * Sells all shares of the given ticker symbol.
-   *
-   * TODO: Implement this method. Steps:
-   *
-   * 1. Validate: ticker must not be null or empty → throw IllegalArgumentException
-   *
-   * 2. Check if position exists: dao.findById(ticker)
-   *
-   * 3. If position DOES NOT exist → throw IllegalArgumentException
-   *    with message "You do not own any shares of " + ticker
-   *    (Don't silently succeed — the user should know the sell failed)
-   *
-   * 4. If position exists → delete it: dao.deleteById(ticker)
    *
    * @param ticker - stock symbol to sell
    */

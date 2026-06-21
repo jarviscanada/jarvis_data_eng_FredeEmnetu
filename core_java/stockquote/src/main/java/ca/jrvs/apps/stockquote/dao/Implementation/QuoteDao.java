@@ -1,9 +1,9 @@
-package ca.jrvs.apps.stockquote.DAO.Implementation;
+package ca.jrvs.apps.stockquote.dao.Implementation;
 
 import static ca.jrvs.apps.stockquote.util.DatabaseConnectionManager.exceptionFormat;
 
-import ca.jrvs.apps.stockquote.DAO.Interface.CrudDao;
-import ca.jrvs.apps.stockquote.DTO.Quote;
+import ca.jrvs.apps.stockquote.dao.Interface.CrudDao;
+import ca.jrvs.apps.stockquote.dto.Quote;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +17,6 @@ public class QuoteDao implements CrudDao<Quote, String> {
   private static final Logger logger = LoggerFactory.getLogger(QuoteDao.class.getName());
 
   private final Connection c;
-  // TODO: Define SQL constants for all CRUD operations.
-  //
-  // UPSERT - Use INSERT ... ON CONFLICT (symbol) DO UPDATE SET ...
-  //   This single statement handles both insert (new quote) and update (existing quote).
-  //   Columns: symbol, open, high, low, price, volume, latest_trading_day,
-  //            previous_close, change, change_percent, timestamp
-  //
   private static final String UPSERT = "INSERT INTO quote (symbol, open, high, low, price, volume, "
     + "latest_trading_day, previous_close, change, change_percent, timestamp) "
     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
@@ -52,17 +45,7 @@ public class QuoteDao implements CrudDao<Quote, String> {
   }
 
   /**
-   * TODO: Save (upsert) a quote to the database.
-   * Steps:
-   * 1. Validate: if entity or ticker is null, throw IllegalArgumentException
-   * 2. Create a PreparedStatement with your UPSERT SQL
-   * 3. Set all 11 parameters using ps.setString(), ps.setDouble(), ps.setInt(),
-   *    ps.setDate(), ps.setTimestamp()
-   * 4. Execute the update: ps.executeUpdate()
-   * 5. Return the entity
-   * 6. Catch SQLException and wrap in RuntimeException
    *
-   * Hint: Parameter order must match your SQL's VALUES (?, ?, ?, ...)
    */
   @Override
   public Quote save(Quote entity) throws IllegalArgumentException {
@@ -89,16 +72,8 @@ public class QuoteDao implements CrudDao<Quote, String> {
   }
 
   /**
-   * TODO: Find a quote by its ticker symbol.
    *
-   * Steps:
-   * 1. Validate: if id is null, throw IllegalArgumentException
-   * 2. Create a PreparedStatement with FIND_BY_ID SQL
-   * 3. Set the symbol parameter
-   * 4. Execute the query and get ResultSet
-   * 5. If rs.next() is true, map the row to a Quote using mapRowToQuote()
-   *    and return Optional.of(quote)
-   * 6. Otherwise return Optional.empty()
+   *
    */
   @Override
   public Optional<Quote> findById(String id) throws IllegalArgumentException {
@@ -119,13 +94,8 @@ public class QuoteDao implements CrudDao<Quote, String> {
   }
 
   /**
-   * TODO: Find all quotes in the database.
    *
-   * Steps:
-   * 1. Create a list to collect results
-   * 2. Execute FIND_ALL query
-   * 3. Loop through ResultSet, map each row with mapRowToQuote(), add to list
-   * 4. Return the list
+   *
    */
   @Override
   public Iterable<Quote> findAll() {
@@ -145,16 +115,8 @@ public class QuoteDao implements CrudDao<Quote, String> {
   }
 
   /**
-   * TODO: Delete a quote by its ticker symbol.
    *
-   * Steps:
-   * 1. Validate: if id is null, throw IllegalArgumentException
-   * 2. Create PreparedStatement with DELETE_BY_ID SQL
-   * 3. Set the symbol parameter
-   * 4. Execute the update
    *
-   * Note: If the symbol doesn't exist, executeUpdate() returns 0 - that's fine,
-   * silently ignore it (per CrudDao contract).
    */
   @Override
   public void deleteById(String id) throws IllegalArgumentException {
@@ -163,19 +125,20 @@ public class QuoteDao implements CrudDao<Quote, String> {
     try (PreparedStatement statement = c.prepareStatement(DELETE_BY_ID)) {
       statement.setString(1, id);
       int rowsAffected = statement.executeUpdate();
-      if(rowsAffected == 0) throw new IllegalStateException("QuoteDao.deleteById: unable to delete row");
+      if(rowsAffected == 0) {
+        logger.warn(String.format(exceptionFormat, "QuoteDao.deleteById", "unable to delete row", "test"));
+        throw new IllegalStateException("QuoteDao.deleteById: unable to delete row");
+      }
 
     } catch (SQLException e) {
-      logger.warn(String.format(exceptionFormat, "QuoteDao.findByID", e.getMessage(), e.getErrorCode()));
+      logger.warn(String.format(exceptionFormat, "QuoteDao.deleteById", e.getMessage(), e.getErrorCode()));
       throw new RuntimeException(e);
     }
   }
 
   /**
-   * TODO: Delete all quotes from the database.
    *
-   * Warning: This will fail if any positions still reference quotes (FK constraint).
-   * Always delete positions first!
+   *
    */
   @Override
   public void deleteAll() {
@@ -188,12 +151,8 @@ public class QuoteDao implements CrudDao<Quote, String> {
   }
 
   /**
-   * TODO: Map a ResultSet row to a Quote object.
    *
-   * Use rs.getString("symbol"), rs.getDouble("open"), rs.getInt("volume"),
-   * rs.getDate("latest_trading_day"), rs.getTimestamp("timestamp"), etc.
    *
-   * Column names must match what's in setup.sql.
    */
   private Quote mapRowToQuote(ResultSet rs) throws SQLException {
     Quote quote = new Quote();

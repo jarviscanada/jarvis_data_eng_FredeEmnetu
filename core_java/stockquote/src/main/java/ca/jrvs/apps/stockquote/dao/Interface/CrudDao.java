@@ -1,4 +1,4 @@
-package ca.jrvs.apps.stockquote.DAO.Interface;
+package ca.jrvs.apps.stockquote.dao.Interface;
 
 
 import java.util.Optional;

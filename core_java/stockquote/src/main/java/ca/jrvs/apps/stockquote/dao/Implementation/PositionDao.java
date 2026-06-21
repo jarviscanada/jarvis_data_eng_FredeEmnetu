@@ -1,12 +1,10 @@
-package ca.jrvs.apps.stockquote.DAO.Implementation;
+package ca.jrvs.apps.stockquote.dao.Implementation;
 
 import static ca.jrvs.apps.stockquote.util.DatabaseConnectionManager.exceptionFormat;
 
-import ca.jrvs.apps.stockquote.DAO.Interface.CrudDao;
-import ca.jrvs.apps.stockquote.DTO.Position;
-import ca.jrvs.apps.stockquote.DTO.Quote;
+import ca.jrvs.apps.stockquote.dao.Interface.CrudDao;
+import ca.jrvs.apps.stockquote.dto.Position;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.sql.*;
@@ -19,10 +17,6 @@ public class PositionDao implements CrudDao<Position, String> {
 
   private final Connection c;
 
-  // TODO: Define SQL constants. Same pattern as QuoteDao but simpler (only 3 columns).
-  //
-  // UPSERT - INSERT INTO position (symbol, number_of_shares, value_paid)
-  //          VALUES (?, ?, ?) ON CONFLICT (symbol) DO UPDATE SET ...
   private static final String UPSERT = "INSERT INTO position (symbol, number_of_shares, value_paid) "
       + "VALUES (?, ?, ?) "
       + "ON CONFLICT (symbol) DO UPDATE SET "
@@ -39,12 +33,9 @@ public class PositionDao implements CrudDao<Position, String> {
   }
 
   /**
-   * TODO: Save (upsert) a position to the database.
+   * @return Position (saved position)
    *
-   * Same pattern as QuoteDao.save() but with only 3 parameters:
-   * symbol, number_of_shares, value_paid
-   *
-   * Remember: the symbol must already exist in the quote table (FK constraint).
+   * @param entity you would like to save
    */
   @Override
   public Position save(Position entity) throws IllegalArgumentException {
@@ -64,8 +55,6 @@ public class PositionDao implements CrudDao<Position, String> {
   }
 
   /**
-   * TODO: Find a position by its ticker symbol.
-   * Same pattern as QuoteDao.findById()
    */
   @Override
   public Optional<Position> findById(String id) throws IllegalArgumentException {
@@ -138,10 +127,9 @@ public class PositionDao implements CrudDao<Position, String> {
   }
 
   /**
-   * TODO: Map a ResultSet row to a Position object.
    *
-   * Columns: symbol -> getTicker(), number_of_shares -> getNumOfShares(),
-   *          value_paid -> getValuePaid()
+   * @return returned positon
+   * @param rs result
    */
   private Position mapRowToPosition(ResultSet rs) throws SQLException {
     Position position = new Position();

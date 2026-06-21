@@ -1,4 +1,4 @@
-package ca.jrvs.apps.stockquote.DTO;
+package ca.jrvs.apps.stockquote.dto;
 
 public class Position {
 

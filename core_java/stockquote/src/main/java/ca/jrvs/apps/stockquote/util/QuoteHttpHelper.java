@@ -1,7 +1,7 @@
 package ca.jrvs.apps.stockquote.util;
 
 
-import ca.jrvs.apps.stockquote.DTO.Quote;
+import ca.jrvs.apps.stockquote.dto.Quote;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;

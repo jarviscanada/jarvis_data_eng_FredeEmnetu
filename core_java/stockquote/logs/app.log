@@ -1,0 +1,3 @@
+2026-06-20 23:51:47,048 [main] WARN  ca.jrvs.apps.stockquote.DAO.Implementation.QuoteDao - exception in QuoteDao.deleteById, message: unable to delete row, code test
+2026-06-20 23:52:10,713 [main] WARN  ca.jrvs.apps.stockquote.DAO.Implementation.QuoteDao - exception in QuoteDao.deleteById, message: unable to delete row, code test
+2026-06-21 15:37:15,381 [main] WARN  ca.jrvs.apps.stockquote.controller.StockQuoteController - StockQuoteController.handleBuy:  Unable to buy stock

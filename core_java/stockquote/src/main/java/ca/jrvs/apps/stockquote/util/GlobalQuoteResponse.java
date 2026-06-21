@@ -1,18 +1,12 @@
 package ca.jrvs.apps.stockquote.util;
 
-import ca.jrvs.apps.stockquote.DTO.Quote;
+import ca.jrvs.apps.stockquote.dto.Quote;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Wrapper for Alpha Vantage API response.
- * The JSON is wrapped in a "Global Quote" object:
- * {
- *   "Global Quote": {
- *     "01. symbol": "MSFT",
- *     ...
- *   }
- * }
+ *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GlobalQuoteResponse {
