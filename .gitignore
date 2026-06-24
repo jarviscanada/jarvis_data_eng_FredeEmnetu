@@ -10,3 +10,6 @@ build/
 
 .mvn/wrapper/maven-wrapper.jar
 
+.ipynb_checkpoints/
+
+
