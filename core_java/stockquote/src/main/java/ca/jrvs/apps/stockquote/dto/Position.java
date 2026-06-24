@@ -11,6 +11,7 @@ public class Position {
   }
 
   public void setNumOfShares(int numOfShares) {
+    if (numOfShares < 0) throw new IllegalArgumentException("numOfShares cannot be negative");
     this.numOfShares = numOfShares;
   }
 
@@ -19,6 +20,7 @@ public class Position {
   }
 
   public void setValuePaid(double valuePaid) {
+    if (valuePaid < 0) throw new IllegalArgumentException("Value paid cannot be negative");
     this.valuePaid = valuePaid;
   }
 
@@ -26,5 +28,8 @@ public class Position {
     return symbol;
   }
 
-  public void setSymbol(String symbol) {this.symbol = symbol.trim().toUpperCase(); }
+  public void setSymbol(String symbol) {
+    if(symbol == null || symbol.isEmpty()) throw new IllegalArgumentException("symbol cannot be null or empty");
+    this.symbol = symbol.trim().toUpperCase();
+  }
 }

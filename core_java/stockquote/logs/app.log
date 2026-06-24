@@ -1,3 +1,41 @@
 2026-06-20 23:51:47,048 [main] WARN  ca.jrvs.apps.stockquote.DAO.Implementation.QuoteDao - exception in QuoteDao.deleteById, message: unable to delete row, code test
 2026-06-20 23:52:10,713 [main] WARN  ca.jrvs.apps.stockquote.DAO.Implementation.QuoteDao - exception in QuoteDao.deleteById, message: unable to delete row, code test
 2026-06-21 15:37:15,381 [main] WARN  ca.jrvs.apps.stockquote.controller.StockQuoteController - StockQuoteController.handleBuy:  Unable to buy stock
+2026-06-21 22:13:03,245 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findByID, message: DB error, code 0
+2026-06-21 22:13:03,269 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findByID, message: DB error, code 0
+2026-06-21 22:13:03,279 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.save, message: DB error, code 0
+2026-06-21 22:13:03,342 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findAll, message: DB error, code 0
+2026-06-21 22:13:03,350 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: DB error, code 0
+2026-06-21 22:13:03,408 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.QuoteDao - exception in QuoteDao.deleteById, message: unable to delete row, code test
+2026-06-21 22:13:03,421 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.QuoteDao - exception in QuoteDao.save, message: DB error, code 0
+2026-06-21 22:13:03,448 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.QuoteDao - exception in QuoteDao.findlAll, message: DB error, code 0
+2026-06-21 22:13:03,458 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.QuoteDao - exception in QuoteDao.deleteAll, message: DB error, code 0
+2026-06-23 19:44:40,446 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findByID, message: DB error, code 0
+2026-06-23 19:44:40,473 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findByID, message: DB error, code 0
+2026-06-23 19:44:40,480 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.save, message: DB error, code 0
+2026-06-23 19:44:40,530 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findAll, message: DB error, code 0
+2026-06-23 19:44:40,539 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: DB error, code 0
+2026-06-23 19:47:50,884 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findByID, message: DB error, code 0
+2026-06-23 19:47:50,894 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findByID, message: DB error, code 0
+2026-06-23 19:47:50,899 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.save, message: DB error, code 0
+2026-06-23 19:47:50,935 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.findAll, message: DB error, code 0
+2026-06-23 19:47:50,940 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: DB error, code 0
+2026-06-23 19:51:59,306 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.QuoteDao - exception in QuoteDao.deleteById, message: unable to delete row, code test
+2026-06-23 19:51:59,322 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.QuoteDao - exception in QuoteDao.save, message: DB error, code 0
+2026-06-23 19:51:59,338 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.QuoteDao - exception in QuoteDao.findlAll, message: DB error, code 0
+2026-06-23 19:51:59,342 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.QuoteDao - exception in QuoteDao.deleteAll, message: DB error, code 0
+2026-06-23 20:07:15,975 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:15,978 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:15,990 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:15,991 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:15,995 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:15,995 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:15,999 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:15,999 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:16,004 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:16,004 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:16,008 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:16,009 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:16,013 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:07:16,013 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
+2026-06-23 20:29:17,271 [main] WARN  ca.jrvs.apps.stockquote.service.QuoteService - exception in QuoteService.fetchQuoteFromAPI, message: Bad symbol, code null

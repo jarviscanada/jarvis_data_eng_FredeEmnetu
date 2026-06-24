@@ -2,12 +2,14 @@ package ca.jrvs.apps.stockquote.service;
 
 import ca.jrvs.apps.stockquote.dao.Implementation.PositionDao;
 import ca.jrvs.apps.stockquote.dto.Position;
+import ca.jrvs.apps.stockquote.util.DatabaseConnectionManager;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -16,30 +18,39 @@ import static org.junit.Assert.*;
 public class PositionServiceIntegTest {
 
 
-  private static final String DB_URL = "jdbc:postgresql://localhost:5432/stockquote_test";
   private static final String DB_USER = "postgres";
-  private static final String DB_PASSWORD = "postgres";
+  private static final String DB_PASSWORD = "password";
+  private static final String PORT = "5432";
+  private static final String HOST = "localhost";
+  private static final String DATABASE = "stock_quote";
 
-  private Connection connection;
-  private PositionDao positionDao;
-  private PositionService positionService;
+  private static Connection connection;
+  private static PositionDao positionDao;
+  private static PositionService positionService;
 
-  @Before
-  public void setUp() throws SQLException {
-    connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+  @BeforeClass
+  public static void setUpClass ()throws SQLException {
+    connection = new DatabaseConnectionManager(HOST, PORT, DATABASE, DB_USER, DB_PASSWORD).getConnection();
     positionDao = new PositionDao(connection);
     positionService = new PositionService(positionDao);
 
+
+  }
+  @Before
+  public void setUp ()throws SQLException {
     // Clean slate before every test
     positionDao.deleteAll();
   }
-
-  @After
-  public void tearDown() throws SQLException {
-    positionDao.deleteAll();
+  @AfterClass
+  public static void tearDownClass() throws SQLException {
     if (connection != null && !connection.isClosed()) {
       connection.close();
     }
+  }
+  @After
+  public void tearDown() throws SQLException {
+    positionDao.deleteAll();
+
   }
 
   // ---------- buy() ----------

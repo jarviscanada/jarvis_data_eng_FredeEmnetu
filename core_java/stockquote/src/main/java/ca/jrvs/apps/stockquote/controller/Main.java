@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Main {
+public class Main{
   static String host = "localhost";
   static String port = "5432";
   static String database = "stock_quote";

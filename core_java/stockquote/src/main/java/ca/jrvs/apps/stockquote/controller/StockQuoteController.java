@@ -72,25 +72,32 @@ public class StockQuoteController {
     System.out.print("Please enter a ticker: ");
     String ticker = scanner.nextLine();
 
-    Optional<Quote> optionalQuote = quoteService.fetchQuoteDataFromAPI(ticker.trim().toUpperCase());
+    try{
+      Optional<Quote> optionalQuote = quoteService.fetchQuoteDataFromAPI(ticker.trim().toUpperCase());
+      if(!optionalQuote.isPresent()) {
+        System.out.println("Could not find quote for: " + ticker);
+      }else{
+        Quote quote = optionalQuote.get();
+        System.out.println(
+            "Ticker: " + quote.getSymbol()
+                + "\nPrice: " + quote.getPrice()
+                + "\nOpen: " + quote.getOpen()
+                + "\nHigh: " + quote.getHigh()
+                + "\nLow: " + quote.getLow()
+                + "\nVolume: " + quote.getVolume()
+                + "\nPrevious Close: " + quote.getPreviousClose()
+                + "\nChange: " + quote.getChange()
+                + "\nChange Precent: " + quote.getChangePercent()
+                + "\nTrading Day: " + quote.getChangePercent()
+        );
+      }
 
-    if(!optionalQuote.isPresent()) {
-      System.out.println("Could not find quote for: " + ticker);
-    }else{
-      Quote quote = optionalQuote.get();
-      System.out.println(
-          "Ticker: " + quote.getSymbol()
-          + "\nPrice: " + quote.getPrice()
-          + "\nOpen: " + quote.getOpen()
-          + "\nHigh: " + quote.getHigh()
-          + "\nLow: " + quote.getLow()
-          + "\nVolume: " + quote.getVolume()
-          + "\nPrevious Close: " + quote.getPreviousClose()
-          + "\nChange: " + quote.getChange()
-          + "\nChange Precent: " + quote.getChangePercent()
-          + "\nTrading Day: " + quote.getChangePercent()
-      );
+    }catch (NullPointerException e){
+      System.out.println("Please enter valid ticker. Ticker entered: " + ticker);
     }
+
+
+
   }
 
   /**
@@ -105,13 +112,19 @@ public class StockQuoteController {
     try{
       Optional<Quote> optionalQuote = quoteService.fetchQuoteDataFromAPI(ticker);
 
-      if(!optionalQuote.isPresent()) throw new IllegalStateException("HandleBuy: Illegal ticker entered");
+      if(!optionalQuote.isPresent()) {
+        System.out.println("Illegal ticker entered. Please try again.");
+        return;
+      }
       Quote quote = optionalQuote.get();
       System.out.println("Current price: " + quote.getPrice());
 
       System.out.print("Enter number of shares: ");
       int numberOfShares = Integer.parseInt(scanner.nextLine());
-      if (numberOfShares < 0) throw new IllegalArgumentException("Please enter a valid number of shares");
+      if (numberOfShares < 0) {
+        System.out.print("Please enter a valid number of shares");
+        return;
+      }
       Position position = positionService.buy(ticker, numberOfShares, quote.getPrice()*numberOfShares);
 
       System.out.println(
@@ -138,7 +151,7 @@ public class StockQuoteController {
     try{
       positionService.sell(ticker);
     } catch (IllegalArgumentException e) {
-      throw new IllegalStateException("Sell failed: You do not own any shares of ZZZZ");
+      System.out.println("Sell failed: You do not own any shares of ZZZZ");
     }
 
 

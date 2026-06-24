@@ -54,27 +54,45 @@ public class Quote {
 
   @JsonProperty("01. symbol")
   public String getSymbol() { return symbol; }
-  public void setSymbol(String symbol) { this.symbol = symbol.trim().toUpperCase(); }
+  public void setSymbol(String symbol) {
+    if (symbol == null || symbol.isEmpty())  throw new IllegalArgumentException("symbol cannot be null or empty");
+    this.symbol = symbol.trim().toUpperCase();
+  }
 
   @JsonProperty("02. open")
   public double getOpen() { return open; }
-  public void setOpen(double open) { this.open = open; }
+  public void setOpen(double open) {
+    if (open < 0) throw new IllegalArgumentException("open cannot be negative");
+    this.open = open;
+  }
 
   @JsonProperty("03. high")
   public double getHigh() { return high; }
-  public void setHigh(double high) { this.high = high; }
+  public void setHigh(double high) {
+    if (high < 0) throw new IllegalArgumentException("high cannot be negative");
+    this.high = high;
+  }
 
   @JsonProperty("04. low")
   public double getLow() { return low; }
-  public void setLow(double low) { this.low = low; }
+  public void setLow(double low) {
+    if (low < 0) throw new IllegalArgumentException("low cannot be negative");
+    this.low = low;
+  }
 
   @JsonProperty("05. price")
   public double getPrice() { return price; }
-  public void setPrice(double price) { this.price = price; }
+  public void setPrice(double price) {
+    if (price < 0) throw new IllegalArgumentException("price cannot be negative");
+    this.price = price;
+  }
 
   @JsonProperty("06. volume")
   public long getVolume() { return volume; }
-  public void setVolume(long volume) { this.volume = volume; }
+  public void setVolume(long volume) {
+    if (volume < 0) throw new IllegalArgumentException("volume cannot be negative");
+    this.volume = volume;
+  }
 
   @JsonProperty("07. latest trading day")
   public Timestamp getLatestTradingDay() { return latestTradingDay; }

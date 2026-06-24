@@ -47,7 +47,7 @@ public class QuoteHttpHelper {
          GlobalQuoteResponse wrapper = JsonParser.toObjectFromJson(json, GlobalQuoteResponse.class);
          quote = wrapper.getQuote();
 
-        if (quote == null || quote.getSymbol().isEmpty()) throw new IllegalArgumentException("Bad symbol");
+        if (quote == null || quote.getSymbol().isEmpty()) throw new NullPointerException("Bad Symbol");
         quote.setTimestamp(Timestamp.from(Instant.now()));
         return quote;
 
