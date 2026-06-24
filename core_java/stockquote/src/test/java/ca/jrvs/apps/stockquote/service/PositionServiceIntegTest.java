@@ -18,19 +18,18 @@ import static org.junit.Assert.*;
 public class PositionServiceIntegTest {
 
 
-  private static final String DB_USER = "postgres";
-  private static final String DB_PASSWORD = "password";
-  private static final String PORT = "5432";
-  private static final String HOST = "localhost";
-  private static final String DATABASE = "stock_quote";
-
+  static String HOST = System.getenv("LOCALHOST");
+  static String PORT = System.getenv("PORT");
+  static String DATABASE = System.getenv("DATABASE");
+  static String USER = System.getenv("USER");
+  static String PASSWORD = System.getenv("PASSWORD");
   private static Connection connection;
   private static PositionDao positionDao;
   private static PositionService positionService;
 
   @BeforeClass
   public static void setUpClass ()throws SQLException {
-    connection = new DatabaseConnectionManager(HOST, PORT, DATABASE, DB_USER, DB_PASSWORD).getConnection();
+    connection = new DatabaseConnectionManager(HOST, PORT, DATABASE, USER, PASSWORD).getConnection();
     positionDao = new PositionDao(connection);
     positionService = new PositionService(positionDao);
 

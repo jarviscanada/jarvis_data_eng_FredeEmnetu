@@ -14,16 +14,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Main{
-  static String host = "localhost";
-  static String port = "5432";
-  static String database = "stock_quote";
-  static String user = "postgres";
-  static String password = "password";
-  static String APIKEY = "3SXVOC66SF4SEMZ2";
+  static String HOST = System.getenv("LOCALHOST");
+  static String PORT = System.getenv("PORT");
+  static String DATABASE = System.getenv("DATABASE");
+  static String USER = System.getenv("USER");
+  static String PASSWORD = System.getenv("PASSWORD");
+  static String APIKEY = System.getenv("APIKEY");
   private static final Logger logger = LoggerFactory.getLogger(Main.class);
   public static void main (String[] args) {
     try{
-      Connection conn = new DatabaseConnectionManager(host,port,database,user, password).getConnection();
+      Connection conn = new DatabaseConnectionManager(HOST,PORT,DATABASE,USER, PASSWORD).getConnection();
       QuoteService quoteService = new QuoteService(new QuoteDao(conn), new QuoteHttpHelper(APIKEY, new OkHttpClient()));
       PositionService positionService = new PositionService(new PositionDao(conn));
       StockQuoteController controller = new StockQuoteController(quoteService, positionService);

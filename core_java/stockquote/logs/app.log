@@ -39,3 +39,4 @@
 2026-06-23 20:07:16,013 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
 2026-06-23 20:07:16,013 [main] WARN  ca.jrvs.apps.stockquote.dao.Implementation.PositionDao - exception in PositionDao.deleteAll, message: This connection has been closed., code 0
 2026-06-23 20:29:17,271 [main] WARN  ca.jrvs.apps.stockquote.service.QuoteService - exception in QuoteService.fetchQuoteFromAPI, message: Bad symbol, code null
+2026-06-23 21:28:55,773 [main] WARN  ca.jrvs.apps.stockquote.service.QuoteService - exception in QuoteService.fetchQuoteFromAPI, message: Bad symbol, code null

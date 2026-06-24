@@ -21,12 +21,12 @@ import static org.junit.Assert.*;
 
 public class QuoteServiceIntegTest {
 
-  private static final String DB_USER = "postgres";
-  private static final String DB_PASSWORD = "password";
-  private static final String API_KEY = "3SXVOC66SF4SEMZ2";
-  private static final String PORT = "5432";
-  private static final String DATABASE = "stock_quote";
-  private static final String HOST = "localhost";
+  static String HOST = System.getenv("LOCALHOST");
+  static String PORT = System.getenv("PORT");
+  static String DATABASE = System.getenv("DATABASE");
+  static String USER = System.getenv("USER");
+  static String PASSWORD = System.getenv("PASSWORD");
+  static String APIKEY = System.getenv("APIKEY");
 
 
 
@@ -36,9 +36,9 @@ public class QuoteServiceIntegTest {
 
   @BeforeClass
   public static void setUpClass() throws SQLException {
-    connection = new DatabaseConnectionManager(HOST, PORT, DATABASE, DB_USER, DB_PASSWORD).getConnection();
+    connection = new DatabaseConnectionManager(HOST, PORT, DATABASE, USER, PASSWORD).getConnection();
     quoteDao = new QuoteDao(connection);
-    QuoteHttpHelper httpHelper = new QuoteHttpHelper(API_KEY, new OkHttpClient());
+    QuoteHttpHelper httpHelper = new QuoteHttpHelper(APIKEY, new OkHttpClient());
     quoteService = new QuoteService(quoteDao, httpHelper);
   }
   @Before
