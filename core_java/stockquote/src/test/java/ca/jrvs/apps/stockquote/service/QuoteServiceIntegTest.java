@@ -17,16 +17,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import static ca.jrvs.apps.stockquote.controller.Main.APIKEY;
+import static ca.jrvs.apps.stockquote.controller.Main.DATABASE;
+import static ca.jrvs.apps.stockquote.controller.Main.HOST;
+import static ca.jrvs.apps.stockquote.controller.Main.PASSWORD;
+import static ca.jrvs.apps.stockquote.controller.Main.PORT;
+import static ca.jrvs.apps.stockquote.controller.Main.USER;
 import static org.junit.Assert.*;
 
 public class QuoteServiceIntegTest {
-
-  static String HOST = System.getenv("LOCALHOST");
-  static String PORT = System.getenv("PORT");
-  static String DATABASE = System.getenv("DATABASE");
-  static String USER = System.getenv("USER");
-  static String PASSWORD = System.getenv("PASSWORD");
-  static String APIKEY = System.getenv("APIKEY");
 
 
 

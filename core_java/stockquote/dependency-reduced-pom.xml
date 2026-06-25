@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>ca.jrvs.apps.stockquote.controller</mainClass>
+                  <mainClass>ca.jrvs.apps.stockquote.controller.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>

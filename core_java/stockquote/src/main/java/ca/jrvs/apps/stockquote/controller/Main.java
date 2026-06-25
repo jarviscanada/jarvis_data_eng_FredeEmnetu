@@ -14,12 +14,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Main{
-  static String HOST = System.getenv("LOCALHOST");
-  static String PORT = System.getenv("PORT");
-  static String DATABASE = System.getenv("DATABASE");
-  static String USER = System.getenv("USER");
-  static String PASSWORD = System.getenv("PASSWORD");
-  static String APIKEY = System.getenv("APIKEY");
+  public static final String HOST = System.getenv("HOST");
+  public static final String PORT = System.getenv("PORT");
+  public static final String DATABASE = System.getenv("DATABASE");
+  public static final String USER = System.getenv("DBUSER");
+  public static final String PASSWORD = System.getenv("DBPASSWORD");
+  public static final String APIKEY = System.getenv("APIKEY");
   private static final Logger logger = LoggerFactory.getLogger(Main.class);
   public static void main (String[] args) {
     try{

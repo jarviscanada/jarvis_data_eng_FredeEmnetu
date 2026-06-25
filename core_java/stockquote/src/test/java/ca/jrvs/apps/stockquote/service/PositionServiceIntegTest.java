@@ -3,6 +3,7 @@ package ca.jrvs.apps.stockquote.service;
 import ca.jrvs.apps.stockquote.dao.Implementation.PositionDao;
 import ca.jrvs.apps.stockquote.dto.Position;
 import ca.jrvs.apps.stockquote.util.DatabaseConnectionManager;
+import java.util.Properties;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,22 +14,22 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import static ca.jrvs.apps.stockquote.controller.Main.DATABASE;
+import static ca.jrvs.apps.stockquote.controller.Main.HOST;
+import static ca.jrvs.apps.stockquote.controller.Main.PASSWORD;
+import static ca.jrvs.apps.stockquote.controller.Main.PORT;
+import static ca.jrvs.apps.stockquote.controller.Main.USER;
 import static org.junit.Assert.*;
 
 public class PositionServiceIntegTest {
 
-
-  static String HOST = System.getenv("LOCALHOST");
-  static String PORT = System.getenv("PORT");
-  static String DATABASE = System.getenv("DATABASE");
-  static String USER = System.getenv("USER");
-  static String PASSWORD = System.getenv("PASSWORD");
   private static Connection connection;
   private static PositionDao positionDao;
   private static PositionService positionService;
 
   @BeforeClass
   public static void setUpClass ()throws SQLException {
+
     connection = new DatabaseConnectionManager(HOST, PORT, DATABASE, USER, PASSWORD).getConnection();
     positionDao = new PositionDao(connection);
     positionService = new PositionService(positionDao);
