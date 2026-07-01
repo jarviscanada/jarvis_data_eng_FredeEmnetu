@@ -1,0 +1,13 @@
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/controller/Main.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/controller/StockQuoteController.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/dao/Implementation/PositionDao.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/dao/Implementation/QuoteDao.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/dao/Interface/CrudDao.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/dto/Position.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/dto/Quote.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/service/PositionService.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/service/QuoteService.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/util/DatabaseConnectionManager.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/util/GlobalQuoteResponse.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/util/JsonParser.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/main/java/ca/jrvs/apps/stockquote/util/QuoteHttpHelper.java

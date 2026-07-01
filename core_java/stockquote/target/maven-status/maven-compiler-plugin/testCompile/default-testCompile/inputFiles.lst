@@ -1,0 +1,7 @@
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/test/java/ca/jrvs/apps/stockquote/dao/PositionDaoUnitTest.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/test/java/ca/jrvs/apps/stockquote/dao/QuoteDaoUnitTest.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/test/java/ca/jrvs/apps/stockquote/service/PositionServiceIntegTest.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/test/java/ca/jrvs/apps/stockquote/service/PositionServiceUnitTest.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/test/java/ca/jrvs/apps/stockquote/service/QuoteServiceIntegTest.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/test/java/ca/jrvs/apps/stockquote/service/QuoteServiceUnitTest.java
+/home/work-ferid/dev/jarvis_data_eng_FredeEmnetu/core_java/stockquote/src/test/java/ca/jrvs/apps/stockquote/util/QuoteHttpHelperUnitTest.java
