@@ -1,0 +1,33 @@
+john.doe@gmail.com
+jane_smith@yahoo.co.uk
+invalid-email@
+user123@domain.org
+@missinguser.com
+
+2024-01-15
+15/01/2024
+Jan 15 2024
+20240115
+13-32-2099
+
+192.168.1.1
+255.255.255.0
+999.999.999.999
+10.0.0.1
+0.0.0.0
+
+Invoice #00123
+Order ID: 9982-AB
+Ref: XYZ
+ID#4521
+Case: 001
+
+The quick brown fox jumps over the lazy dog
+Hello, World!
+   leading whitespace
+trailing whitespace
+""
+$19.99
+100%
+<html><body>test</body></html>
+SELECT * FROM users WHERE id = 1;

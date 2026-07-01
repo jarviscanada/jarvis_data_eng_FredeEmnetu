@@ -1,3 +1,15 @@
 .idea/
+out/
+*.class
+target/
+build/
+*.jar
+*.war
+*.ear
+*.nar
+
+.mvn/wrapper/maven-wrapper.jar
+
+.ipynb_checkpoints/
 
 
