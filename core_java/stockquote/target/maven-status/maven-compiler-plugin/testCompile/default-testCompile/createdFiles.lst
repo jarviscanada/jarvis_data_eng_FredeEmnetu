@@ -1,0 +1,7 @@
+ca/jrvs/apps/stockquote/service/QuoteServiceUnitTest.class
+ca/jrvs/apps/stockquote/service/PositionServiceIntegTest.class
+ca/jrvs/apps/stockquote/service/QuoteServiceIntegTest.class
+ca/jrvs/apps/stockquote/service/PositionServiceUnitTest.class
+ca/jrvs/apps/stockquote/util/QuoteHttpHelperUnitTest.class
+ca/jrvs/apps/stockquote/dao/QuoteDaoUnitTest.class
+ca/jrvs/apps/stockquote/dao/PositionDaoUnitTest.class
