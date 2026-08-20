@@ -47,28 +47,36 @@ flowchart TD
     B -->|Clean, dedupe,<br/>validate, standardize| C[Silver Layer<br/>Cleaned Delta Tables]
     C -->|Fraud & behavior<br/>aggregations| D[Gold Layer<br/>Analytics Delta Tables]
     D --> E[Fraud Analytics Dashboard<br/>Databricks SQL]
-
-    subgraph Databricks Workspace
+ 
+    subgraph WS[Databricks Workspace]
         B
         C
         D
     end
-
-    subgraph Storage
-        F[(Azure Data Lake Storage)]
-    end
-
-    subgraph Governance
+ 
+    subgraph GOV[Governance]
         G[(Unity Catalog)]
     end
-
+ 
+    subgraph STORE[Storage]
+        F[(Azure Data Lake Storage)]
+    end
+ 
     B -.-> F
     C -.-> F
     D -.-> F
     B -.-> G
     C -.-> G
     D -.-> G
+ 
+    classDef node fill:transparent,stroke:#58a6ff,stroke-width:1px,color:#ffffff
+    class A,B,C,D,E,F,G node
+ 
+    style WS fill:transparent,stroke:#58a6ff,color:#ffffff
+    style GOV fill:transparent,stroke:#58a6ff,color:#ffffff
+    style STORE fill:transparent,stroke:#58a6ff,color:#ffffff
 ```
+ 
 
 # DLT Pipeline Implementation
 
@@ -100,7 +108,7 @@ Work performed in this pipeline includes:
 4. Silver data aggregated using PySpark window functions → materialized as a Gold materialized view
 5. Gold materialized view queried by the dashboard layer for visualization
 
-Because the pipeline is built declaratively, dependencies between layers are inferred automatically from which tables each step reads — Databricks manages checkpointing, incremental processing, and execution order.
+Because the pipeline is built declaratively, dependencies between layers are inferred automatically from which tables each step reads — Databricks manages checkpointing, incremental processing, and execution order
 
 ## Architecture Diagram
 
@@ -111,27 +119,34 @@ flowchart TD
     B -->|Standardize types,<br/>clean| C[Silver Streaming Table<br/>DLT @dp.table]
     C -->|Window functions:<br/>5/30/90-day change,<br/>avg volume, avg open| D[Gold Materialized View<br/>DLT @dp.table]
     D --> E[Stock Market Dashboard<br/>Databricks SQL]
-
-    subgraph Databricks Lakeflow Declarative Pipeline
+ 
+    subgraph PIPE[Databricks Lakeflow Declarative Pipeline]
         B
         C
         D
     end
-
-    subgraph Storage
-        F[(Azure Data Lake Storage)]
-    end
-
-    subgraph Governance
+ 
+    subgraph GOV[Governance]
         G[(Unity Catalog)]
     end
-
+ 
+    subgraph STORE[Storage]
+        F[(Azure Data Lake Storage)]
+    end
+ 
     B -.-> F
     C -.-> F
     D -.-> F
     B -.-> G
     C -.-> G
     D -.-> G
+ 
+    classDef node fill:transparent,stroke:#58a6ff,stroke-width:1px,color:#ffffff
+    class A,V,B,C,D,E,F,G node
+ 
+    style PIPE fill:transparent,stroke:#58a6ff,color:#ffffff
+    style GOV fill:transparent,stroke:#58a6ff,color:#ffffff
+    style STORE fill:transparent,stroke:#58a6ff,color:#ffffff
 ```
 
 # Future Improvement
