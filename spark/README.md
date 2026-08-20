@@ -89,7 +89,7 @@ Work performed in this pipeline includes:
 - Silver-layer standardization: converting dates, prices, and volume fields into proper data types, with cleaned records managed by DLT using `@dp.table`
 - Gold-layer feature engineering: a materialized view computing metrics such as average volume, last close, average open, and percent change over 5, 30, and 90 trading-day windows, used to power the stock market dashboard
 
-📓 Notebook: [`DLT_Pipeline.ipynb`](./DLT_Pipeline.ipynb)
+📓 Notebook: [`DLT Pipeline`](./notebook/Aplha_Vantage/)
 
 ## Architecture
 
