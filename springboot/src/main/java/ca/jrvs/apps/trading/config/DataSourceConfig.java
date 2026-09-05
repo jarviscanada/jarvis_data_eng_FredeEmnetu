@@ -10,7 +10,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Configuration
 public class DataSourceConfig {
 
-  @Value("${spring.datasource.driver-class-name}")
+  @Value("${spring.datasource.driver}")
   private String driver;
 
   @Value("${spring.datasource.url}")

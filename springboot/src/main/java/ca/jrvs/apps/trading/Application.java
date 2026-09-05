@@ -39,6 +39,7 @@ class Application implements CommandLineRunner {
       Optional<String> ans = dao.executeHttpGet("https://finnhub.io/api/v1/quote?symbol=AAPL"
           + "&token=da8qajpr01qvfj5thvdgda8qajpr01qvfj5thve0");
       System.out.println(ans.get());
+//      System.out.println("hii");
 
     } catch (Exception e) {
       logger.error(e.getMessage());
