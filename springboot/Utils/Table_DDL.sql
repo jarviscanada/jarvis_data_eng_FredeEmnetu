@@ -27,11 +27,14 @@ CREATE TABLE public.account
 CREATE TABLE public.quote
 (
     ticker     varchar NOT NULL,
-    last_price float8  NOT NULL,
-    bid_price  float8  NOT NULL,
-    bid_size   int4    NOT NULL,
-    ask_price  float8  NOT NULL,
-    ask_size   int4    NOT NULL,
+    current_price float8  NOT NULL,
+    change  float8  NOT NULL,
+    percent_change   float8    NOT NULL,
+    high  float8  NOT NULL,
+    low  float8    NOT NULL,
+    open   float8    NOT NULL,
+    previous_close   float8    NOT NULL,
+    timestamp TIMESTAMP NULL,
     CONSTRAINT quote_pk PRIMARY KEY (ticker)
 );
 
