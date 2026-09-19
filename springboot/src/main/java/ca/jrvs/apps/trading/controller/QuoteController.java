@@ -76,7 +76,7 @@ public class QuoteController {
 
     Quote quote = quoteService.findQuoteByTicker(tickerId);
     if (quote == null) {
-      throw new ResourceNotFoundException("Error retrieving quote");
+      throw new ResourceNotFoundException(ExceptionUtil.buildMessage("Error retrieving quote"));
     }
     quoteService.save(quote);
     return quote;

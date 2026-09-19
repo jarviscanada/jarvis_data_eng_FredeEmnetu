@@ -1,5 +1,6 @@
 package ca.jrvs.apps.trading.repository;
 
+import ca.jrvs.apps.trading.ExceptionUtil;
 import ca.jrvs.apps.trading.dto.Quote;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.org.slf4j.internal.Logger;
@@ -71,9 +72,10 @@ public class MarketDataDao {
             return Optional.of(quote);
 
         } catch (DataRetrievalFailureException e) {
-            throw new DataRetrievalFailureException("Unable to fetch Api: " + e.getMessage());
+            throw new DataRetrievalFailureException(
+                ExceptionUtil.buildMessage("Unable to fetch Api: " + e.getMessage()));
         }catch(IOException e) {
-            throw new IOException("Error parsing Json" +  e.getMessage());
+            throw new IOException(ExceptionUtil.buildMessage("Error parsing Json" +  e.getMessage()));
         }
     }
 
@@ -90,7 +92,7 @@ public class MarketDataDao {
             .stream(tickers.spliterator(), false)
             .map(ticker -> {
                 try {
-                    return findById(ticker);
+                    return findFinnQuoteByTicker(ticker);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -112,7 +114,7 @@ public class MarketDataDao {
      */
     public Optional<String> executeHttpGet(String url) {
         if (url == null || url.isEmpty()) {
-            throw new IllegalArgumentException("url must not be null or blank");
+            throw new IllegalArgumentException(ExceptionUtil.buildMessage("url must not be null or blank"));
         }
 
         HttpClient httpClient = getHttpClient();
@@ -134,7 +136,8 @@ public class MarketDataDao {
 
         } catch (IOException e) {
             logger.error("Failed to execute HTTP GET to ", url, e);
-            throw new DataRetrievalFailureException("Failed to execute HTTP GET to " + url, e);
+            throw new DataRetrievalFailureException(ExceptionUtil.buildMessage("Failed to execute HTTP GET to " + url),
+                e);
         }
     }
 

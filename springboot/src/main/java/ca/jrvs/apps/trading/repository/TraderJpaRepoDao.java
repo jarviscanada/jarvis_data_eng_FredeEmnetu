@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TraderJpaRepoDao extends JpaRepository<Trader, Integer> {
-    Trader findQuoteById(Integer id);
+    Trader findTraderById(Integer id);
     Trader save(Trader trader);
     List<Trader> findAll();
     Optional<Trader> findById(Integer Id);
