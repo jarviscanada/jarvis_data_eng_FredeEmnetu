@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PositionJpaRepoDao extends JpaRepository<Position, Integer> {
-    Position findQuoteById(Integer id);
     List<Position> findAll();
-    Optional<Position> findById(Integer Id);
+    Optional<Position> findByAccountIdAndTicker(Integer accountId, String ticker);
     boolean existsById(Integer Id);
     long count();
     List<Position> findByIdIn(List<Integer> ids);

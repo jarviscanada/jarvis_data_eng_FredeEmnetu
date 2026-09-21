@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountJpaRepoDao extends JpaRepository<Account, Integer> {
-    Account findQuoteById(Integer id);
     Account save(Account account);
     List<Account> findAll();
     Optional<Account> findById(Integer Id);

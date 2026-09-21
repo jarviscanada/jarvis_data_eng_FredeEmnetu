@@ -27,7 +27,7 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     public SecurityOrder postMarketOrder(@RequestBody MarketOrder orderDto) {
         try {
-            return orderService.postMarketOrder(orderDto);
+            return orderService.executeMarketOrder(orderDto);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to submit market order", e);
         }
