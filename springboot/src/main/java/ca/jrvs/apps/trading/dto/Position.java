@@ -1,5 +1,6 @@
 package ca.jrvs.apps.trading.dto;
 
+import java.math.BigInteger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,13 +13,12 @@ import org.hibernate.annotations.Immutable;
 public class Position {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     private Integer accountId;
     @Column(name = "ticker")
     private String ticker;
     @Column(name = "position")
-    private Integer position;
+    private long position;
 
     public Integer getAccountId() {
         return accountId;
@@ -36,11 +36,11 @@ public class Position {
         this.ticker = ticker;
     }
 
-    public Integer getPosition() {
+    public long getPosition() {
         return position;
     }
 
-    public void setPosition(Integer position) {
+    public void setPosition(long position) {
         this.position = position;
     }
 }

@@ -44,4 +44,6 @@ public class Account {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+
+    public String testMethod(){ return "Good to test"; }
 }

@@ -22,16 +22,17 @@ public class OrderService {
     private final AccountJpaRepoDao accountRepo;
     private final SecurityOrderJpaRepoDao securityOrderRepo;
     private final TraderJpaRepoDao traderRepo;
-    private QuoteService quoteService;
+    private final QuoteService quoteService;
     private final PositionJpaRepoDao positionRepo;
 
     @Autowired
     public OrderService(AccountJpaRepoDao accountRepo, SecurityOrderJpaRepoDao securityOrderRepo,
-        TraderJpaRepoDao traderRepo, PositionJpaRepoDao positionRepo) {
+        TraderJpaRepoDao traderRepo, PositionJpaRepoDao positionRepo, QuoteService quoteService) {
         this.accountRepo = accountRepo;
         this.securityOrderRepo = securityOrderRepo;
         this.traderRepo = traderRepo;
         this.positionRepo = positionRepo;
+        this.quoteService = quoteService;
     }
 
 
@@ -136,7 +137,7 @@ public class OrderService {
             securityOrder.setStatus("Rejected!");
             throw new EmptyResultDataAccessException(1);
         }
-        long positionValue = optionalPosition.get().getPosition();
+        Long positionValue = optionalPosition.get().getPosition();
 
         if (positionValue < marketOrder.getSize()) {
             securityOrder.setStatus("REJECTED");

@@ -3,8 +3,7 @@ package ca.jrvs.apps.trading.repository;
 import ca.jrvs.apps.trading.ExceptionUtil;
 import ca.jrvs.apps.trading.dto.Quote;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +16,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.apache.http.impl.client.HttpClients;

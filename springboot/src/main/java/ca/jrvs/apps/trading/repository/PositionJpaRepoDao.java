@@ -12,5 +12,5 @@ public interface PositionJpaRepoDao extends JpaRepository<Position, Integer> {
     Optional<Position> findByAccountIdAndTicker(Integer accountId, String ticker);
     boolean existsById(Integer Id);
     long count();
-    List<Position> findByIdIn(List<Integer> ids);
+    List<Position> findByAccountIdIn(List<Integer> ids);
 }

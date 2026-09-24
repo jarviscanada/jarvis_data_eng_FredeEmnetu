@@ -3,13 +3,17 @@ package ca.jrvs.apps.trading.service;
 import ca.jrvs.apps.trading.repository.MarketDataDao;
 import ca.jrvs.apps.trading.dto.Quote;
 import ca.jrvs.apps.trading.repository.QuoteJpaRepoDao;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import javax.persistence.Column;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,7 +83,17 @@ public class QuoteService {
     if (old == null) {
       throw new  IllegalArgumentException("Quote does not exist in database");
     }
-    old = quote;
+
+    if (quote.getTimestamp() != null) old.setTimestamp(quote.getTimestamp().getTime());
+    if (quote.getCurrentPrice() != null) old.setCurrentPrice(quote.getCurrentPrice());
+    if (quote.getChange() != null) old.setChange(quote.getChange());
+    if (quote.getPercentChange() != null) old.setPercentChange(quote.getPercentChange());
+    if (quote.getHigh() != null) old.setHigh(quote.getHigh());
+    if (quote.getLow() != null) old.setLow(quote.getLow());
+    if (quote.getOpen() != null) old.setOpen(quote.getOpen());
+    if (quote.getPreviousClose() != null) old.setPreviousClose(quote.getPreviousClose());
+
+
     quoteJpaRepoDao.save(old);
   }
 
