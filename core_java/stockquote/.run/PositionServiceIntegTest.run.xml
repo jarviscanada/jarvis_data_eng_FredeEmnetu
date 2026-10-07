@@ -1,0 +1,26 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="PositionServiceIntegTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="stockquote" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="ca.jrvs.apps.stockquote.service.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="PACKAGE_NAME" value="ca.jrvs.apps.stockquote.service" />
+    <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.stockquote.service.PositionServiceIntegTest" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="class" />
+    <envs>
+      <env name="APIKEY" value="'5AJFGTFCW4KW1QUE'" />
+      <env name="DATABASE" value="'stockquote'" />
+      <env name="HOST" value="'localhost'" />
+      <env name="PASSWORD" value="'password'" />
+      <env name="PORT" value="'5432'" />
+      <env name="USER" value="'postgres'" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
