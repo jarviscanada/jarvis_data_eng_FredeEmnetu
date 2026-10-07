@@ -21,15 +21,16 @@ skills:
     - RDBMS/SQL
     - Agile/Scrum
     - Git
-    - Express.Js
+    - Spring Boot
+    - Docker
+    - API Testing
   # At least 5 skills
   competent:
     - Next.Js
-    - Spring Boot
     - C++
     - JavaScript
-    - Docker
-    - API Testing
+    - C#
+    - React
   # At least 5 skills
   familiar:
     - Jenkins
@@ -45,10 +46,10 @@ jarvis_projects:
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: >
-      The Linux Cluster Monitoring Agent (LCA) is a resource monitoring solution designed to track and 
-      record the hardware specifications and real-time usage statistics of Linux nodes within a server cluster. 
-      The system automatically collects CPU, memory, and disk data from each host and persists it to a centralized 
-      PostgreSQL database for historical analysis and reporting.
+      Developed a Linux Cluster Monitoring Agent (LCA) intended to be used as a resource monitoring solution designed to track and 
+      record the hardware specifications and real-time usage statistics of 3+ Linux nodes within a server cluster. 
+      The system was built with bash scripts and CRON for scheduling. The system automatically collects CPU, memory, and 
+      disk data from each host and persists it to a centralized PostgreSQL database for historical analysis and reporting.
   - name: "Java Grep Application"
     git_url: "/core_java/grep"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
@@ -64,8 +65,8 @@ jarvis_projects:
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: >
       Delivered a proof-of-concept customer analytics project for a UK giftware retailer facing stagnant revenue, using Python, Pandas, and NumPy in a Jupyter Notebook connected to a 
-      Dockerized PostgreSQL warehouse. Performed RFM segmentation across ~5,900 customers into 10 behavioral segments, finding the top 5% of customers generated 52% of revenue, w
-      ith 754 "At Risk" and 86 "Can't Lose" customers showing churn signs. Visualized findings with Matplotlib and delivered actionable recommendations (VIP retention, 
+      Dockerized PostgreSQL warehouse. Performed RFM segmentation across ~5,900 customers into 10 behavioral segments, finding the top 5% of customers generated 52% of revenue, 
+      with 754 "At Risk" and 86 "Can't Lose" customers showing churn signs. Visualized findings with Matplotlib and delivered actionable recommendations (VIP retention, 
       win-back campaigns, seasonal timing) to the marketing team. Presented results as both a technical notebook and an executive presentation.
   - name: "Java Stock Quote App"
     git_url: "/core_java/stock_quote"
@@ -76,6 +77,30 @@ jarvis_projects:
       and trading activity to a PostgreSQL database, with OkHttp for HTTP requests and Jackson for JSON parsing. Applied the DAO pattern to separate CRUD logic from business logic, 
       keeping the service layer decoupled from SQL and testable via mocked dependencies. Validated functionality with JUnit 4 and Mockito unit tests against mocked DAOs, plus integration 
       tests against a live Dockerized PostgreSQL instance. Packaged the app with Maven and Docker for consistent setup and deployment.
+
+  - name: "Databricks & Spark"
+    git_url: "/spark"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: >
+      Built two Medallion (Bronze → Silver → Gold) data pipelines in Databricks using PySpark and Delta Lake on Azure, turning raw data into analysis-ready datasets for dashboards. 
+      Ingested 13M+ financial transaction rows from Azure SQL Database via JDBC, then cleaned, deduplicated, and type-cast them in the Silver layer, with each 
+      stage gated on the success of the previous one, to produce Gold tables for fraud and user-behavior analysis. Developed a second pipeline using Lakeflow 
+      Declarative Pipelines (DLT) and Auto Loader to incrementally ingest daily Alpha Vantage data for four tickers, computing 5/30/90-day percent change and 
+      average volume with PySpark window functions in a Gold materialized view. Governed all tables with Unity Catalog on Azure Data Lake Storage and served 
+      results through Databricks dashboards.
+
+  - name: "Spring Boot"
+    git_url: "/springboot"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: >
+      Built a Spring Boot REST API that simulates a securities trading platform, supporting trader and account management, real-time quotes from the Finnhub API, 
+      and buy/sell market orders validated against account balance and position size. Structured the app into controller, service, and DAO layers, using Spring 
+      Data JPA/Hibernate with PostgreSQL for persistence and Apache HttpClient for market data, and cached quotes locally to avoid repeated external API calls. 
+      Verified behavior with JUnit 5 and Mockito unit tests on the service layer, plus integration tests against a real PostgreSQL database and live Finnhub calls, 
+      and documented the endpoints with Swagger UI. Containerized the app and database with multi-stage Docker builds on a shared bridge network and published both 
+      images to Docker Hub.
 
 # List of personal or academic projects
 # Feel free to add more projects
