@@ -62,11 +62,11 @@ docker run --name trading-psql-dev \
 
 # Start the trading app
 docker run --name trading-app-dev \
-  -e "PSQL_URL=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \
-  -e "PSQL_USER=postgres" \
-  -e "PSQL_PASSWORD=password" \
+  -e "PGHOST=jdbc:postgresql://trading-psql-dev:5432/jrvstrading" \
+  -e "PGUSER=postgres" \
+  -e "PGPASSWORD=password" \
   --network trading-net \
-  -p 5000:8080 -t fredeemnetu/trading-app
+  -p 5000:8080 -t fredeemnetu/tradingapp:1.2
 ```
 
 ### Try trading-app with Swagger UI
