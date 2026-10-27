@@ -1,0 +1,49 @@
+# ==================== DEPLOYMENT: Spring Boot app ====================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trading-app              # Name of deployment object
+spec:
+  replicas: 3                    # Have 3 running instances of the app
+  selector:
+    matchLabels:
+      app: trading-app           # apply the label app="trading-app" to replica set 
+                                 # so it knows which pods it controls
+  template:
+    metadata:
+      labels:
+        app: trading-app         # Apply this label to all pods created
+    spec:
+      containers:
+      - name: trading-app-container       # name of container
+        image: fredeemnetu/tradingapp:1.3
+        ports:
+        - name: port-name
+          containerPort: 8080    # what Spring actually listens on (from your logs)
+        env:  # enviroment variables when creating container
+        - name: PGHOST
+          value: jdbc:postgresql://psql-service:5432/postgres  # Postgres Service name from psql deployment
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: psql-secret
+              key: POSTGRES_USER
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: psql-secret
+              key: POSTGRES_PASSWORD
+---
+# ==================== SERVICE: address for the app ====================
+apiVersion: v1
+kind: Service
+metadata:
+  name: trading-service          # unique, different from "psql-service"
+spec:
+  type: NodePort                 # reachable from outside the cluster (Minikube)
+  selector:
+    app: trading-app             # sends traffic to the trading-app pods
+  ports:
+  - name: http
+    port: 5000                   # what clients use inside the cluster
+    targetPort: port-name        # forwards to containerPort 8080 (by name)

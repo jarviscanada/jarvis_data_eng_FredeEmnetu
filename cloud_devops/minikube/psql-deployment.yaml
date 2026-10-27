@@ -1,0 +1,81 @@
+# ======================= SECRET =======================
+# PURPOSE: a named bag of key/value pairs for sensitive config.
+# Other objects read from it by name, so the password lives in one
+# place instead of being copied into every Deployment.
+apiVersion: v1                 # Secret is a core object, so plain "v1"
+kind: Secret
+metadata:
+  name: psql-secret            # the name other objects use to reference this
+type: Opaque                   # "generic" Secret (arbitrary keys). Other types
+                               # exist for TLS certs and Docker registry logins.
+stringData:                    # lets you write plain text. Kubernetes stores it
+                               # base64-encoded under "data". Base64 is encoding,
+                               # NOT encryption, so don't commit real passwords.
+  POSTGRES_USER: postgres      # each key becomes an env var name later.
+  POSTGRES_PASSWORD: password  # These three names are not Kubernetes rules.
+  POSTGRES_DB: postgres        # The Postgres image looks for exactly these.
+---                            # three dashes = "new object starts here". It lets
+                               # one file hold many objects.
+# ====================== DEPLOYMENT ======================
+apiVersion: apps/v1            # Deployment lives in the "apps" API group
+kind: Deployment
+metadata:
+  name: psql                   # name of the Deployment object itself
+spec:
+  replicas: 1                  # how many identical pods to keep running
+  strategy:
+    type: Recreate             # how to replace pods on update:
+                               #   RollingUpdate = gradually, old+new overlap
+                               #   Recreate      = kill old first, then start new
+                               # Recreate is right for a database, which must
+                               # not run two copies on the same data.
+  selector:
+    matchLabels:
+      app: psql                # "I own any pod carrying the label app=psql".
+                               # This is how the Deployment finds its pods.
+  template:                    # the BLUEPRINT for each pod it creates.
+                               # Everything below is a pod definition nested
+                               # inside the Deployment.
+    metadata:
+      labels:
+        app: psql              # the label stamped onto each pod. MUST match
+                               # selector.matchLabels above, or Kubernetes
+                               # rejects the Deployment.
+    spec:                      # the pod's spec
+      containers:              # LIST: a pod can run several containers
+      - name: psql             # name of this container inside the pod
+                               # (only needs to be unique within the pod)
+        image: fredeemnetu/trading-psql:latest
+                               # what to run: <registry user>/<repo>:<tag>.
+                               # Pinned tags (e.g. :1.3) are safer than :latest.
+        envFrom:               # LIST: bulk-load env vars from other objects
+        - secretRef:           # ...from a Secret
+            name: psql-secret  # by NAME. Every key in the Secret becomes an
+                               # env var in this container.
+        ports:                 # LIST of ports this container listens on
+        - name: psql-port          # label for the port, so others can refer to it
+          containerPort: 5432  # the port the process listens on inside the
+                               # container. Informational only; it does not
+                               # open or publish anything.
+---
+# ======================== SERVICE ========================
+# PURPOSE: a stable network address in front of a changing set of pods.
+# Pod IPs change every time a pod is replaced. The Service name and
+# IP stay the same, and it forwards to whichever pods are alive.
+apiVersion: v1
+kind: Service
+metadata:
+  name: psql-service           # becomes a DNS hostname inside the cluster.
+                               # App connects to "psql-service:5432".
+spec:
+  # type: ClusterIP            # the default: reachable only inside the cluster.
+                               # Other options: NodePort (open a port on the
+                               # node), LoadBalancer (cloud public IP).
+  selector:
+    app: psql                  # forward to any pod labeled app=psql
+  ports:
+  - name: psql
+    port: 5432                 # port the Service itself listens on; what
+                               # clients use
+    targetPort: psql-port      # port on the pod to forward to. Can be a number
+                               # (5432) or the NAME of the containerPort above.
