@@ -9,6 +9,11 @@ spec:
     matchLabels:
       app: trading-app           # apply the label app="trading-app" to replica set 
                                  # so it knows which pods it controls
+  strategy:
+    rollingUpdate:
+      maxSurge: 1 
+      maxUnavailable: 0 
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -16,23 +21,26 @@ spec:
     spec:
       containers:
       - name: trading-app-container       # name of container
-        image: fredeemnetu/tradingapp:1.3
+        image: feridclusternameregistry.azurecr.io/tradingapp:1.4
         ports:
         - name: port-name
           containerPort: 8080    # what Spring actually listens on (from your logs)
         env:  # enviroment variables when creating container
         - name: PGHOST
-          value: jdbc:postgresql://psql-service:5432/postgres  # Postgres Service name from psql deployment
+          valueFrom: 
+            secretKeyRef:
+              name: azure-secret
+              key: PGHOST
         - name: PGUSER
           valueFrom:
             secretKeyRef:
-              name: psql-secret
-              key: POSTGRES_USER
+              name: azure-secret
+              key: PGUSER
         - name: PGPASSWORD
           valueFrom:
             secretKeyRef:
-              name: psql-secret
-              key: POSTGRES_PASSWORD
+              name: azure-secret
+              key: PGPASSWORD
 ---
 # ==================== SERVICE: address for the app ====================
 apiVersion: v1
@@ -40,10 +48,23 @@ kind: Service
 metadata:
   name: trading-service          # unique, different from "psql-service"
 spec:
-  type: NodePort                 # reachable from outside the cluster (Minikube)
+  type: LoadBalancer            # reachable from outside the cluster 
   selector:
     app: trading-app             # sends traffic to the trading-app pods
   ports:
   - name: http
     port: 5000                   # what clients use inside the cluster
     targetPort: port-name        # forwards to containerPort 8080 (by name)
+
+--- 
+apiVersion: v1
+kind: Secret
+metadata:
+  name: azure-secret
+type: Opaque
+
+stringData:
+  PGHOST: jdbc:postgresql://springboot-psql.postgres.database.azure.com:5432/postgres?sslmode=require
+  PGUSER: adminFerid
+  PGPASSWORD: C@n@d@236
+
