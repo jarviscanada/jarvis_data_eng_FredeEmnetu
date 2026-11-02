@@ -35,27 +35,40 @@ pipeline {
             }
         }
         stage('Init') {
-            steps {
+            script {
                 sh '''
-                if ! command -v az &> /dev/null; then
-                    echo "Azure CLI not found. Installing..."
-                    curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-                else
-                    echo "Azure CLI is already available."
-                fi
-            '''
-                sh 'az login --service-principal --username ${AZ_USER} --password ${AZ_PWD} --tenant ${AZ_TENANT}'
-            }
+                    if ! command -v az &> /dev/null; then
+                        echo "Azure CLI not found locally. Installing to workspace..."
+                        
+                        # Create a local bin directory in the workspace
+                        mkdir -p ${WORKSPACE}/bin
+                        
+                        # Download and extract the official Azure CLI portable Linux build
+                        curl -L https://aka.ms/installazureclibash | bash -s -- --fix-dep --dir ${WORKSPACE}/bin
+                        
+                        # Add the local bin directory to PATH for this build
+                        export PATH=$PATH:${WORKSPACE}/bin
+                    else
+                        echo "Azure CLI is already available."
+                    fi
+                    
+                    # Verify local az installation
+                    az --version
+                '''
+                
+                // Log in using your global environment variables
+                sh '${WORKSPACE}/bin/az login --service-principal --username ${AZ_USER} --password ${AZ_PWD} --tenant ${AZ_TENANT}'
+        }
         }
         stage('Build') {
             steps {
-                sh ' az acr build --image ${IMAGE_NAME} --registry $ACR_NAME --file springboot/Dockerfile spring_boot/'
+                sh '${WORKSPACE}/bin/az acr build --image ${IMAGE_NAME} --registry $ACR_NAME --file springboot/Dockerfile spring_boot/'
             }
         }
         stage('Deploy') {
             steps {
                 //Connect to AKS
-                sh 'az aks get-credentials --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP'
+                sh '${WORKSPACE}/bin/az aks get-credentials --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP'
                 //show cluster info for debugging purposes
                 sh 'kubectl cluster-info'
                 //Deploy the new image
