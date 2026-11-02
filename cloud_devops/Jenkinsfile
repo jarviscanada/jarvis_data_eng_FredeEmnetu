@@ -5,9 +5,9 @@ pipeline {
         app_name = 'trading-app'
 
         //Init
-        AZ_USER=credentials('AZ_USER_DEV')
-        AZ_PWD=credentials('AZ_PWD_DEV')
-        AZ_TENANT=credentials('AZ_TENANT_DEV')
+        AZ_USER=credentials('AZ_USER')
+        AZ_PWD=credentials('AZ_PWD')
+        AZ_TENANT=credentials('AZ_TENANT')
 
         //Build
         ACR_NAME='feridclusternameregistry'
