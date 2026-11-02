@@ -40,22 +40,24 @@ pipeline {
                     sh '''
                         if ! command -v az &> /dev/null; then
                             echo "Azure CLI not found locally. Installing to workspace..."
-                            
-                            # Create a local bin directory in the workspace
                             mkdir -p ${WORKSPACE}/bin
                             
-                            # Download and extract the official Azure CLI portable Linux build
-                            curl -L https://aka.ms/installazureclibash | bash -s -- --fix-dep --dir ${WORKSPACE}/bin
+                            # Step 1: Download safely to a file first to avoid stream write failures
+                            curl -L https://aka.ms/installazureclibash -o ${WORKSPACE}/install-az.sh
                             
-                            # Add the local bin directory to PATH for this build
+                            # Step 2: Run the installer script targeting our local bin path
+                            bash ${WORKSPACE}/install-az.sh --fix-dep --dir ${WORKSPACE}/bin
+                            
+                            # Step 3: Cleanup installer script
+                            rm -f ${WORKSPACE}/install-az.sh
+                            
                             export PATH=$PATH:${WORKSPACE}/bin
                         else
                             echo "Azure CLI is already available."
                         fi
                         
-                        # Verify local az installation
                         az --version
-                    '''
+                        '''
                     
                     // Log in using your global environment variables
                     sh '${WORKSPACE}/bin/az login --service-principal --username ${AZ_USER} --password ${AZ_PWD} --tenant ${AZ_TENANT}'
