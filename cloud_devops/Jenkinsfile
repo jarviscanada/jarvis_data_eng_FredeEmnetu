@@ -36,6 +36,14 @@ pipeline {
         }
         stage('Init') {
             steps {
+                sh '''
+                if ! command -v az &> /dev/null; then
+                    echo "Azure CLI not found. Installing..."
+                    curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+                else
+                    echo "Azure CLI is already available."
+                fi
+            '''
                 sh 'az login --service-principal --username ${AZ_USER} --password ${AZ_PWD} --tenant ${AZ_TENANT}'
             }
         }
