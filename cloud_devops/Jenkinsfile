@@ -1,20 +1,61 @@
 pipeline {
     agent any
+    script {
+        // Convert BUILD_NUMBER to an integer and shift index so Build 1 starts at 1.0
+        int buildIndex = env.BUILD_NUMBER.toInteger() - 1
+        
+        // Every 10 builds, the major version increases by 1
+        int major = 1 + (buildIndex / 10).toInteger()
+        
+        // The minor version cycles from 0 through 9
+        int minor = buildIndex % 10
+        
+        // Set the final tag (e.g., 1.0, 1.9, 2.0, etc.)
+        env.IMAGE_TAG = "${major}.${minor}"
+        echo "Using Image Tag: ${env.IMAGE_TAG}"
+    }
+
+    environment {
+        app_name = 'trading-app'
+
+        //Init
+        AZ_USER=credentials('AZ_USER_DEV')
+        AZ_PWD=credentials('AZ_PWD_DEV')
+        AZ_TENANT=credentials('AZ_TENANT_DEV')
+
+        //Build
+        ACR_NAME='feridclusternameregistry'
+
+        IMAGE_NAME="tradingapp:${env.IMAGE_TAG}"
+
+        //Deploy
+        RESOURCE_GROUP='rg-ferid'
+        CLUSTER_NAME='ferid-cluster-name'
+        DOCKER_REPO='feridclusternameregistry.azurecr.io'
+        DEPLOYMENT_NAME='trading-app'
+    }
 
     stages {
-        stage('Build') {
+        stage('Init') {
             steps {
-                echo 'Building..'
+                sh 'az login --service-principal --username ${AZ_USER} --password ${AZ_PWD} --tenant ${AZ_TENANT}'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing..'
+                sh ' az acr build --image ${IMAGE_NAME} --registry $ACR_NAME --file --file springboot/Dockerfile spring_boot/'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                //Connect to AKS
+                sh 'az aks get-credentials --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP'
+                //show cluster info for debugging purposes
+                sh 'kubectl cluster-info'
+                //Deploy the new image
+                sh 'kubectl set image ${DEPLOYMENT_NAME} trading-app-container=${DOCKER_REPO}/${IMAGE_NAME}'
+                //Check result
+                sh 'kubectl get all'
             }
         }
     }
