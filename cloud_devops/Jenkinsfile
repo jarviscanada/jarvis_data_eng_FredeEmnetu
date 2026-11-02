@@ -4,20 +4,17 @@ pipeline {
     environment {
         app_name = 'trading-app'
 
-        //Init
-        AZ_USER=credentials('AZ_USER')
-        AZ_PWD=credentials('AZ_PWD')
-        AZ_TENANT=credentials('AZ_TENANT')
+        // Init Credentials
+        AZ_USER = credentials('AZ_USER')
+        AZ_PWD = credentials('AZ_PWD')
+        AZ_TENANT = credentials('AZ_TENANT')
 
-        //Build
-        ACR_NAME='feridclusternameregistry'
-
-
-        //Deploy
-        RESOURCE_GROUP='rg-ferid'
-        CLUSTER_NAME='ferid-cluster-name'
-        DOCKER_REPO='feridclusternameregistry.azurecr.io'
-        DEPLOYMENT_NAME='trading-app'
+        // Build & Deploy Config
+        ACR_NAME = 'feridclusternameregistry'
+        RESOURCE_GROUP = 'rg-ferid'
+        CLUSTER_NAME = 'ferid-cluster-name'
+        DOCKER_REPO = 'feridclusternameregistry.azurecr.io'
+        DEPLOYMENT_NAME = 'trading-app'
     }
 
     stages {
@@ -28,56 +25,35 @@ pipeline {
                     int major = 1 + (buildIndex / 10).toInteger()
                     int minor = buildIndex % 10
                     env.IMAGE_TAG = "${major}.${minor}"
-                    
                     env.FULL_IMAGE_NAME = "tradingapp:${env.IMAGE_TAG}"
                     echo "Target Image Tag: ${env.IMAGE_TAG}"
                 }
             }
         }
+        
         stage('Init') {
-            steps{
+            steps {
                 script {
-                    sh '''
-                        if ! command -v az &> /dev/null; then
-                            echo "Azure CLI not found locally. Installing to workspace..."
-                            mkdir -p ${WORKSPACE}/bin
-                            
-                            # Step 1: Download safely to a file first to avoid stream write failures
-                            curl -L https://aka.ms/installazureclibash -o ${WORKSPACE}/install-az.sh
-                            
-                            # Step 2: Run the installer script targeting our local bin path
-                            bash ${WORKSPACE}/install-az.sh --fix-dep --dir ${WORKSPACE}/bin
-                            
-                            # Step 3: Cleanup installer script
-                            rm -f ${WORKSPACE}/install-az.sh
-                            
-                            export PATH=$PATH:${WORKSPACE}/bin
-                        else
-                            echo "Azure CLI is already available."
-                        fi
-                        
-                        az --version
-                        '''
+                    // 1. Verify az is available on the agent
+                    sh 'az --version'
                     
-                    // Log in using your global environment variables
-                    sh '${WORKSPACE}/bin/az login --service-principal --username ${AZ_USER} --password ${AZ_PWD} --tenant ${AZ_TENANT}'
+                    // 2. Authenticate with Azure Service Principal
+                    sh 'az login --service-principal --username ${AZ_USER} --password ${AZ_PWD} --tenant ${AZ_TENANT}'
                 }
             }
         }
+        
         stage('Build') {
             steps {
-                sh '${WORKSPACE}/bin/az acr build --image ${IMAGE_NAME} --registry $ACR_NAME --file springboot/Dockerfile spring_boot/'
+                sh 'az acr build --image ${FULL_IMAGE_NAME} --registry $ACR_NAME --file spring_boot/Dockerfile spring_boot/'
             }
         }
+        
         stage('Deploy') {
             steps {
-                //Connect to AKS
-                sh '${WORKSPACE}/bin/az aks get-credentials --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP'
-                //show cluster info for debugging purposes
+                sh 'az aks get-credentials --name $CLUSTER_NAME --resource-group $RESOURCE_GROUP'
                 sh 'kubectl cluster-info'
-                //Deploy the new image
-                sh 'kubectl set image deployment/${DEPLOYMENT_NAME} trading-app-container=${DOCKER_REPO}/${IMAGE_NAME}'
-                //Check result
+                sh 'kubectl set image deployment/${DEPLOYMENT_NAME} trading-app-container=${DOCKER_REPO}/${FULL_IMAGE_NAME}'
                 sh 'kubectl get all'
             }
         }
