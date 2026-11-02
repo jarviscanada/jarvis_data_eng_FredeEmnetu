@@ -30,6 +30,13 @@ public class QuoteController {
     this.quoteService = quoteService;
   }
 
+  @GetMapping("/health")
+  @ResponseStatus(HttpStatus.OK)
+  public String health(){
+    return "I am healthy! V3: CI/CD";
+  }
+
+
   @GetMapping("/finnhub/ticker/{ticker}")
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
