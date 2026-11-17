@@ -101,6 +101,17 @@ jarvis_projects:
       Verified behavior with JUnit 5 and Mockito unit tests on the service layer, plus integration tests against a real PostgreSQL database and live Finnhub calls, 
       and documented the endpoints with Swagger UI. Containerized the app and database with multi-stage Docker builds on a shared bridge network and published both 
       images to Docker Hub.
+  
+  - name: "Trading App on AKS"
+    git_url: "/cloud_devops"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: >
+      Deployed a Spring Boot trading application to Azure Kubernetes Service, running behind an Azure Load Balancer and Kubernetes Service across two replica pods
+      backed by a managed Azure PostgreSQL database. Built a Jenkins CI/CD pipeline (running in-cluster via Helm) that detects GitHub commits, builds and pushes 
+      Docker images to Azure Container Registry, and performs rolling deployments via kubectl set image and rollout verification. Configured Jenkins agent pods with 
+      Azure CLI and kubectl, authenticating via an Azure service principal to keep credentials out of the repository. Documented the system architecture and CI/CD flow, 
+      including rollback via kubectl rollout undo.
 
 # List of personal or academic projects
 # Feel free to add more projects
